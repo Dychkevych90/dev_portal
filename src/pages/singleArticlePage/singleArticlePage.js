@@ -2,7 +2,7 @@ import React from 'react';
 
 const SingleArticlePage = () => {
   return (
-    <div></div>
+    <div>i am single page</div>
   );
 };
 
