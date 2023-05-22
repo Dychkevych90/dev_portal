@@ -13,6 +13,7 @@ const SideBarWrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   transition:  .5s;
+  z-index: 10;
   
  .top,
  .bottom {

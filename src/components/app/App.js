@@ -45,6 +45,12 @@ const App = () => {
         } }>
           <div>1. logo ?</div>
           <div>2. preloader</div>
+          <div>3. add users block in sidebar</div>
+          <div>4. particles ?</div>
+          <div>5. add animated names if section</div>
+          <div>6. add tags in each card ?</div>
+          <div>7. add created date in cards</div>
+          <div>8. add eye (count how many times article watches)</div>
         </div>
       </ThemeProvider>
     </>

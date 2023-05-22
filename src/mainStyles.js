@@ -11,20 +11,47 @@ const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
   }
   
+  .section_title {
+    background: goldenrod;
+    width: 400px;
+    margin: 50px 0;
+    padding: 5px 5px 5px 27px;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    color: #000;
+    font-size: 30px;
+    font-weight: 700;
+    animation: slideInFromLeft .5s ease-in-out;
+    z-index: -1;
+  }
+
+  @keyframes slideInFromLeft {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  
   a, button {
     cursor: pointer;
   }
   
   body {
-    //background-color: #18191a;
     background-color: ${( { theme } ) => theme.body};
   }
   
-  // #11101d - side bar background
-  // #001f3f arrow open/close for light mode
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
   // Responsive grid styles
   .container {
-    max-width: 100%;
+    width: 100%;
+    //max-width: 1440px;
     margin: 0 auto; 
     padding: 0 20px;
   }
@@ -32,11 +59,13 @@ const GlobalStyles = createGlobalStyle`
   .row {
     display: flex;
     flex-wrap: wrap;
+    margin-bottom: 20px;
   }
 
   .column {
     flex: 0 0 100%; 
     padding: 0 10px;
+    margin-bottom: 30px;
   }
 
   /* Define specific column classes for different column widths */
