@@ -9,7 +9,7 @@ const HtmlCss = ( { isMenuOpen } ) => {
       <div className="container" style={ { paddingLeft: '0' } }>
         <div className="row">
           <div className="column column-12" style={ { paddingLeft: '0' } }>
-            <div className="section_title">Html & Css</div>
+            <div className="section_title">HTML & CSS</div>
           </div>
         </div>
         <div className="row">

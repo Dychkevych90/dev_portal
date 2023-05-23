@@ -6,6 +6,7 @@ import { ThemeProvider } from 'styled-components';
 import Sidebar from '../sidebar/sidebar';
 import Home from '../../pages/home/home';
 import HtmlCss from '../../pages/html&css/htmlCss';
+import SingleArticlePage from '../../pages/singleArticlePage/singleArticlePage';
 
 import GlobalStyles from '../../mainStyles';
 import { lightTheme, darkTheme } from '../../mainStyles';
@@ -31,30 +32,18 @@ const App = () => {
         <Routes>
           <Route exact path='/' element={ <Home isMenuOpen={ isMenuOpen }/> }/>
           <Route exact path='/html-and-css' element={ <HtmlCss isMenuOpen={ isMenuOpen }/> }/>
+          {/* eslint-disable-next-line max-len */}
+          <Route exact path='/article' element={ <SingleArticlePage isMenuOpen={ isMenuOpen }/> }/>
         </Routes>
 
-        {/* eslint-disable-next-line max-len */}
-        <div style={ {
-          position: 'fixed',
-          background: '#fff',
-          width: '200px',
-          right: '0',
-          top: '0',
-          flexDirection: 'column',
-          display: 'flex',
-        } }>
-          <div>1. logo ?</div>
-          <div>2. preloader</div>
-          <div>3. add users block in sidebar</div>
-          <div>4. particles ?</div>
-          <div>5. add animated names if section</div>
-          <div>6. add tags in each card ?</div>
-          <div>7. add created date in cards</div>
-          <div>8. add eye (count how many times article watches)</div>
-        </div>
+        {/* TODO: 1. logo ? */}
+        {/* TODO: 2. preloader */}
+        {/* TODO: 4. particles ? */}
+        {/* TODO: 6. add tags in each card ? */}
       </ThemeProvider>
     </>
   );
 };
 
 export default App;
+

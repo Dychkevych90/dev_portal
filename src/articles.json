@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "title": "JavaScript Math",
+    "banner": "./assets/images/html.jpg",
+    "created_date": "23/05/2023",
+    "category": ["Javascript"],
+    "content": [
+      {
+        "block-1": {
+          "sortOrder": 0,
+          "small_title": "Math.PI",
+          "desc": "Повертає число РI:",
+          "code": {
+            "string-1": "Math.PI // 3.141592653589793"
+          }
+        },
+        "block-2": {
+          "sortOrder": 1,
+          "small_title": "Math.Round(x)",
+          "desc": "Округляє число до найближчого цілого:",
+          "code": {
+            "string-1": "Math.round(4.6) // 5",
+            "string-2": "Math.round(4.4) // 4"
+          }
+        }
+      }
+    ]
+  }
+]

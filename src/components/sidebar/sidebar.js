@@ -10,7 +10,7 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import HomeIcon from '@mui/icons-material/Home';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import ArticleIcon from '@mui/icons-material/NoteAlt';
-import LogoutIcon from '@mui/icons-material/Logout';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
 
@@ -77,9 +77,11 @@ const Sidebar = ( { setIsMenuOpen, toggleTheme, themeMode } ) => {
       </div>
 
       <div className="bottom">
+        <button>Add Article</button>
+
         <button className='logout_btn'>
-          <LogoutIcon className='icon'/>
-          <span className="text">Log out</span>
+          <AccountCircleIcon className='icon'/>
+          <span className="text">Мій аккаунт</span>
         </button>
 
         <div className='switch'>

@@ -10,11 +10,13 @@ const CardWrapper = styled.div`
   .img {
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
-    margin-bottom: 15px;
   }
   
   .content {
     padding: 10px;
+    width: 100%;
+    position: relative;
+    
     .title {
       font-size: 20px;
       font-weight: 600;
@@ -37,10 +39,29 @@ const CardWrapper = styled.div`
       transition: .3s;
       font-weight: 500;
       color: goldenrod;
+      text-decoration: none;
       
       &:hover {
         color: #fff;
         transition: .3s;
+      }
+    }
+    
+    .date {
+      font-size: 12px;
+      opacity: .7;
+    }
+    
+    .visibility_block {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      right: 15px;
+      bottom: 10px;
+      opacity: .7;
+      
+      svg {
+        margin-right: 5px;
       }
     }
   }
