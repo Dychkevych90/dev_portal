@@ -58,7 +58,7 @@ const Sidebar = ( { setIsMenuOpen, toggleTheme, themeMode } ) => {
           <li className="nav_item">
             <a href="#" className="link">
               <GitHubIcon className='nav_icon'/>
-              <div className='text'>Github</div>
+              <div className='text'>Git & Github</div>
             </a>
           </li>
           <li className="nav_item">

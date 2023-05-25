@@ -24,7 +24,7 @@ const SingleArticlePage = ( { isMenuOpen } ) => {
               Object.values( item ).map( ( block ) => {
                 return (
 
-                  <div className="column column-4" key={ block.id }>
+                  <div className={ `column ${article.classes}` } key={ block.id }>
                     <div className='small_title'>
                       {block.small_title}
                     </div>
