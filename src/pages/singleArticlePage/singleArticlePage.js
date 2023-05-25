@@ -1,4 +1,6 @@
 import React from 'react';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 import { SingleArticle, CodeBlock } from './styled.js';
 
@@ -36,7 +38,18 @@ const SingleArticlePage = ( { isMenuOpen } ) => {
                       <div className="bottom">
                         {Object.values( block.code ).map( ( codeValue, index ) => (
                           <div className="code_row" key={ index }>
-                            <div className='text text_color-violet'>{codeValue.method}</div>
+                            <SyntaxHighlighter
+                              customStyle={ {
+                                backgroundColor: 'transparent',
+                                padding: '0',
+                                margin: '0 10px 0 0',
+                              } }
+                              language="javascript"
+                              style={ vscDarkPlus }
+                              className='code'
+                            >
+                              {codeValue.method}
+                            </SyntaxHighlighter>
                             <span className='console_log_color'>{codeValue.output}</span>
                           </div>
                         ) )}

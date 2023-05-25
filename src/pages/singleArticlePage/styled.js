@@ -83,7 +83,7 @@ const CodeBlock = styled.div`
       color: #6a6767;
     }
     
-    .text {
+    .code {
       margin-right: 10px;
       font-weight: 500;
     }
