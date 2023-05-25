@@ -2,26 +2,157 @@
   {
     "id": 1,
     "title": "JavaScript Math",
-    "banner": "./assets/images/html.jpg",
-    "created_date": "23/05/2023",
+    "banner": "/images/html.jpg",
+    "created_date": "23.05.2023",
     "category": ["Javascript"],
     "content": [
       {
         "block-1": {
+          "id": 1,
           "sortOrder": 0,
           "small_title": "Math.PI",
           "desc": "Повертає число РI:",
           "code": {
-            "string-1": "Math.PI // 3.141592653589793"
+            "line1": {
+              "method": "Math.PI",
+              "output": "// 3.141592653589793"
+            }
           }
         },
         "block-2": {
+          "id": 2,
           "sortOrder": 1,
           "small_title": "Math.Round(x)",
           "desc": "Округляє число до найближчого цілого:",
           "code": {
-            "string-1": "Math.round(4.6) // 5",
-            "string-2": "Math.round(4.4) // 4"
+            "line1": {
+              "method": "Math.round(4.6)",
+              "output": "// 5"
+            },
+            "line2": {
+              "method": "Math.round(4.4)",
+              "output": "// 4"
+            }
+          }
+        },
+        "block-3": {
+          "id": 3,
+          "sortOrder": 2,
+          "small_title": "Math.ceil(x)",
+          "desc": "повертає найбільше найближче ціле число.",
+          "code": {
+            "line1": {
+              "method": "Math.ceil(7.1)",
+              "output": "// 8"
+            }
+          }
+        },
+        "block-4": {
+          "id": 4,
+          "sortOrder": 3,
+          "small_title": "Math.floor(x)",
+          "desc": "повертає найменше найближче ціле число.",
+          "code": {
+            "line1": {
+              "method": "Math.ceil(7.1)",
+              "output": "// 7"
+            }
+          }
+        },
+        "block-5": {
+          "id": 5,
+          "sortOrder": 4,
+          "small_title": "Math.trunc(x)",
+          "desc": "повертає цілу частину з числа відкидаючи дробну.",
+          "code": {
+            "line1": {
+              "method": "Math.trunc(2.65)",
+              "output": "// 2"
+            }
+          }
+        },
+        "block-6": {
+          "id": 6,
+          "sortOrder": 5,
+          "small_title": "Math.pow(x, y)",
+          "desc": "взводить число в степінь.",
+          "code": {
+            "line1": {
+              "method": "Math.pow(2,5)",
+              "output": "// 32"
+            }
+          }
+        },
+        "block-7": {
+          "id": 7,
+          "sortOrder": 6,
+          "small_title": "Math.sqtr(x)",
+          "desc": "повертає квадратний корінь числа.",
+          "code": {
+            "line1": {
+              "method": "Math.pow(64)",
+              "output": "// 8"
+            }
+          }
+        },
+        "block-8": {
+          "id": 8,
+          "sortOrder": 7,
+          "small_title": "Math.abs(x)",
+          "desc": "повертає абсолютне значення числа.",
+          "code": {
+            "line1": {
+              "method": "Math.pow(-4.7)",
+              "output": "// 4.7"
+            }
+          }
+        },
+        "block-9": {
+          "id": 9,
+          "sortOrder": 8,
+          "small_title": "Math.min([a,b,c...])",
+          "desc": "повертає найменше число з заданих параметрів.",
+          "code": {
+            "line1": {
+              "method": "Math.min([0,150,30,20,-8, -200])",
+              "output": "// -200"
+            }
+          }
+        },
+        "block-10": {
+          "id": 10,
+          "sortOrder": 9,
+          "small_title": "Math.max([a,b,c...])",
+          "desc": "повертає найбільше число з заданих параметрів.",
+          "code": {
+            "line1": {
+              "method": "Math.max([0,150,30,20,-8, -200])",
+              "output": "// 150"
+            }
+          }
+        },
+        "block-11": {
+          "id": 11,
+          "sortOrder": 10,
+          "small_title": "Math.abs(x)",
+          "desc": "повертає абсолютне значення числа.",
+          "code": {
+            "line1": {
+              "method": "Math.pow(-4.7)",
+              "output": "// 4.7"
+            }
+          }
+        },
+        "block-12": {
+          "id": 12,
+          "sortOrder": 11,
+          "small_title": "Math.random()",
+          "desc": "повертає випадкове число в діапазоні від 0 до 1.",
+          "code": {
+            "line1": {
+              "method": "Math.random()",
+              "output": "// 0.8757862724370908"
+            }
           }
         }
       }

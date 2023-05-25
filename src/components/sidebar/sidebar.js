@@ -39,14 +39,14 @@ const Sidebar = ( { setIsMenuOpen, toggleTheme, themeMode } ) => {
           <li className="nav_item">
             <NavLink to='/html-and-css' className="link">
               <CodeIcon className='nav_icon'/>
-              <div className='text'> Html & Css</div>
+              <div className='text'>Html & Css</div>
             </NavLink>
           </li>
           <li className="nav_item">
-            <a href="#" className="link">
+            <NavLink to='/javascript' className="link">
               <JavascriptIcon className='nav_icon icon-js'/>
               <div className='text'>JavaScript</div>
-            </a>
+            </NavLink>
           </li>
           <li className="nav_item">
             <a href="#" className="link">
@@ -77,8 +77,6 @@ const Sidebar = ( { setIsMenuOpen, toggleTheme, themeMode } ) => {
       </div>
 
       <div className="bottom">
-        <button>Add Article</button>
-
         <button className='logout_btn'>
           <AccountCircleIcon className='icon'/>
           <span className="text">Мій аккаунт</span>
