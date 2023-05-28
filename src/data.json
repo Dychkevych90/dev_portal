@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "title": "test title",
+    "description": "test desc",
+    "created_date": "2023-05-28T15:11:32.420Z",
+    "content": [
+      {
+        "fields": [
+          {
+            "type": "text",
+            "value": "subtitle dealo hahasdksda"
+          },
+          {
+            "type": "text",
+            "value": ""
+          },
+          {
+            "type": "image",
+            "value": ""
+          },
+          {
+            "type": "image",
+            "value": ""
+          },
+          {
+            "type": "text",
+            "value": "subtitle2"
+          },
+          {
+            "type": "text",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "fields": [
+          {
+            "type": "text",
+            "value": "next section subtitle 1"
+          },
+          {
+            "type": "text",
+            "value": ""
+          }
+        ]
+      }
+    ],
+    "classes": "class-4 class-5",
+    "banner": null,
+    "categories": [
+      "JS",
+      " CSS"
+    ]
+  }
+]

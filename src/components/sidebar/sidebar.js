@@ -77,6 +77,7 @@ const Sidebar = ( { setIsMenuOpen, toggleTheme, themeMode } ) => {
       </div>
 
       <div className="bottom">
+        <button>add article</button>
         <button className='logout_btn'>
           <AccountCircleIcon className='icon'/>
           <span className="text">Мій аккаунт</span>

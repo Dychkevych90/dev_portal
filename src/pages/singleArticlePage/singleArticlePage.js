@@ -10,7 +10,7 @@ import articlesData from './../../articles.json';
 const SingleArticlePage = ( { isMenuOpen } ) => {
   const { id } = useParams();
   const article = articlesData.find( ( article ) => article.id === Number( id ) );
-
+  console.log( 'article', article );
   return (
     <SingleArticle isMenuOpen={ isMenuOpen }>
       <div className="main_block">
@@ -23,7 +23,6 @@ const SingleArticlePage = ( { isMenuOpen } ) => {
             article.content.map( ( item ) =>
               Object.values( item ).map( ( block ) => {
                 return (
-
                   <div className={ `column ${article.classes}` } key={ block.id }>
                     <div className='small_title'>
                       {block.small_title}
@@ -56,7 +55,6 @@ const SingleArticlePage = ( { isMenuOpen } ) => {
                       </div>
                     </CodeBlock>
                   </div>
-
                 );
               } ),
             )
