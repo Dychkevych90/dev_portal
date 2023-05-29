@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import { ArticleWrapper } from './styled';
 
 const AddBlock = () => {
-  const currentDate = new Date();
   const [ blockList, setBlockList ] = useState( [] );
   const [ banner, setBanner ] = useState( null );
   const [ category, setCategory ] = useState( [] );
@@ -11,8 +10,10 @@ const AddBlock = () => {
     id: 0,
     title: '',
     description: '',
-    created_date: currentDate,
-    content: [],
+    created_date: new Date().toISOString(),
+    content: [
+      { small_title: '' },
+    ],
   } );
 
   const changeHandler = ( event ) => {
@@ -38,17 +39,22 @@ const AddBlock = () => {
       //   block.fields.push( { type: fieldType, value: '' } );
       // }
 
-      block.fields.push( { type: fieldType, value: '' } );
+      block.fields.push( { type: fieldType, value: '', desc: '' } );
 
       return updatedBlockList;
     } );
   };
 
   const handleFieldChange = ( blockIndex, fieldIndex, event ) => {
-    const { value } = event.target;
+    const { value, description } = event.target;
+    // eslint-disable-next-line prefer-const
+    let sortOrder = 0;
+    sortOrder++;
     setBlockList( ( prevBlockList ) => {
       const updatedBlockList = [ ...prevBlockList ];
       updatedBlockList[ blockIndex ].fields[ fieldIndex ].value = value;
+      updatedBlockList[ blockIndex ].fields[ fieldIndex ].sortOrder = sortOrder + 1;
+      updatedBlockList[ blockIndex ].fields[ fieldIndex ].description = description;
       return updatedBlockList;
     } );
   };
@@ -79,11 +85,11 @@ const AddBlock = () => {
       banner: banner,
       created_date: new Date().toISOString(),
       categories: category,
-      content: blockList,
+      content: [ { small_title: form.small_title } ],
     };
 
     // Convert the blockList to JSON string
-    const jsonData = JSON.stringify( data, null, 2 );
+    const jsonData = JSON.stringify( data, null, 3 );
     console.log( 'jsonData', jsonData );
     // Create a Blob object with the JSON data
     const blob = new Blob( [ jsonData ], { type: 'application/json' } );
@@ -108,6 +114,7 @@ const AddBlock = () => {
         <input type="text" name='description' placeholder='description' onChange={ changeHandler }/>
         <input type="text" name='classes' placeholder='add classes' onChange={ changeHandler }/>
         <input type="text" name='categories' placeholder='add categories' onChange={ addCategory }/>
+        <input type="text" name='small_title' placeholder='add' onChange={ changeHandler }/>
 
         <button type='button' onClick={ handleAddSection }>Add Section</button>
 
@@ -121,6 +128,13 @@ const AddBlock = () => {
             {block.fields.map( ( field, fieldIndex ) => (
               <div key={ fieldIndex }>
                 {field.type === 'text' && (
+                  <input
+                    type="text"
+                    value={ field.value }
+                    onChange={ ( event ) => handleFieldChange( blockIndex, fieldIndex, event ) }
+                  />
+                )}
+                {field.type === 'description' && (
                   <input
                     type="text"
                     value={ field.value }
@@ -154,6 +168,7 @@ const AddBlock = () => {
               <select onChange={ ( event ) => handleAddField( blockIndex, event.target.value ) }>
                 <option value="">Select a field type</option>
                 <option value="text">Text Field</option>
+                <option value="description">description Field</option>
                 <option value="image">Image Field</option>
                 <option value="video">Video Field</option>
               </select>

@@ -1,35 +1,23 @@
 [
   {
     "id": 1,
-    "title": "test title",
-    "description": "test desc",
-    "created_date": "2023-05-28T15:11:32.420Z",
+    "title": "JS MAth",
+    "description": "",
+    "created_date": "2023-05-29T14:10:08.977Z",
     "content": [
       {
         "fields": [
           {
             "type": "text",
-            "value": "subtitle dealo hahasdksda"
+            "value": "Math<pi",
+            "desc": "",
+            "sortOrder": 2
           },
           {
-            "type": "text",
-            "value": ""
-          },
-          {
-            "type": "image",
-            "value": ""
-          },
-          {
-            "type": "image",
-            "value": ""
-          },
-          {
-            "type": "text",
-            "value": "subtitle2"
-          },
-          {
-            "type": "text",
-            "value": ""
+            "type": "description",
+            "value": "повертає чисто ПІ",
+            "desc": "",
+            "sortOrder": 2
           }
         ]
       },
@@ -37,20 +25,23 @@
         "fields": [
           {
             "type": "text",
-            "value": "next section subtitle 1"
+            "value": "mATh> florr()",
+            "desc": "",
+            "sortOrder": 2
           },
           {
             "type": "text",
-            "value": ""
+            "value": "pfjrheuke' ojcm",
+            "desc": "",
+            "sortOrder": 2
           }
         ]
       }
     ],
-    "classes": "class-4 class-5",
+    "classes": "column-4",
     "banner": null,
     "categories": [
-      "JS",
-      " CSS"
+      "JS"
     ]
   }
 ]
