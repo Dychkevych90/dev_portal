@@ -10,11 +10,11 @@ const AddBlock = () => {
     id: 0,
     title: '',
     description: '',
-    created_date: new Date().toISOString(),
-    content: [
-      { small_title: '' },
-    ],
+    price: 0,
   } );
+  // const [ showInputs, setShowInputs ] = useState( false );
+  const [ inputSets, setInputSets ] = useState( [ {} ] );
+  console.log( 'blockList', blockList );
 
   const changeHandler = ( event ) => {
     setForm( { ...form, [ event.target.name ]: event.target.value } );
@@ -24,54 +24,36 @@ const AddBlock = () => {
     setCategory( e.target.value.split( ',' ) );
   };
 
-  const handleAddSection = () => {
-    setBlockList( ( prevBlockList ) => [ ...prevBlockList, { fields: [] } ] );
+  const handleAddObject = () => {
+    const newObject = { };
+    const selectedFields = inputSets[ inputSets.length - 1 ];
+
+    Object.entries( selectedFields ).forEach( ( [ key, value ] ) => {
+      newObject[ key ] = value;
+    } );
+
+    setBlockList( ( prevDataList ) => [ ...prevDataList, newObject ] );
+    setInputSets( ( prevInputSets ) => [ ...prevInputSets, {} ] );
   };
 
-  const handleAddField = ( blockIndex, fieldType ) => {
-    setBlockList( ( prevBlockList ) => {
-      const updatedBlockList = [ ...prevBlockList ];
-      const block = updatedBlockList[ blockIndex ];
-
-      // const existingField = block.fields.find( ( field ) => field.type === fieldType );
-      //
-      // if ( !existingField ) {
-      //   block.fields.push( { type: fieldType, value: '' } );
-      // }
-
-      block.fields.push( { type: fieldType, value: '', desc: '' } );
-
-      return updatedBlockList;
+  const handleInputChange = ( index, key, value ) => {
+    setInputSets( ( prevInputSets ) => {
+      const updatedInputSets = [ ...prevInputSets ];
+      updatedInputSets[ index ][ key ] = value;
+      return updatedInputSets;
     } );
   };
 
-  const handleFieldChange = ( blockIndex, fieldIndex, event ) => {
-    const { value, description } = event.target;
-    // eslint-disable-next-line prefer-const
-    let sortOrder = 0;
-    sortOrder++;
-    setBlockList( ( prevBlockList ) => {
-      const updatedBlockList = [ ...prevBlockList ];
-      updatedBlockList[ blockIndex ].fields[ fieldIndex ].value = value;
-      updatedBlockList[ blockIndex ].fields[ fieldIndex ].sortOrder = sortOrder + 1;
-      updatedBlockList[ blockIndex ].fields[ fieldIndex ].description = description;
-      return updatedBlockList;
+  const handleRemoveObject = ( index ) => {
+    setBlockList( ( prevDataList ) => {
+      const updatedDataList = [ ...prevDataList ];
+      updatedDataList.splice( index, 1 );
+      return updatedDataList;
     } );
-  };
-
-  const handleRemoveField = ( blockIndex, fieldIndex ) => {
-    setBlockList( ( prevBlockList ) => {
-      const updatedBlockList = [ ...prevBlockList ];
-      updatedBlockList[ blockIndex ].fields.splice( fieldIndex, 1 );
-      return updatedBlockList;
-    } );
-  };
-
-  const handleRemoveSection = ( index ) => {
-    setBlockList( ( prevBlockList ) => {
-      const updatedBlockList = [ ...prevBlockList ];
-      updatedBlockList.splice( index, 1 );
-      return updatedBlockList;
+    setInputSets( ( prevInputSets ) => {
+      const updatedInputSets = [ ...prevInputSets ];
+      updatedInputSets.splice( index, 1 );
+      return updatedInputSets;
     } );
   };
 
@@ -106,6 +88,24 @@ const AddBlock = () => {
     link.click();
   };
 
+  const [ newParamKey, setNewParamKey ] = useState( '' );
+  const [ newParamValue, setNewParamValue ] = useState( '' );
+
+  const handleAddParam = ( objectId ) => {
+    setBlockList( ( prevObjects ) => {
+      const updatedObjects = prevObjects.map( ( object ) => {
+        if ( object.id === objectId ) {
+          const updatedObject = { ...object, [ newParamKey ]: newParamValue };
+          return updatedObject;
+        }
+        return object;
+      } );
+      return updatedObjects;
+    } );
+    setNewParamKey( '' ); // Reset the input field for the key after adding the parameter
+    setNewParamValue( '' ); // Reset the input field for the value after adding the parameter
+  };
+
   return (
     <ArticleWrapper>
       <form>
@@ -116,66 +116,50 @@ const AddBlock = () => {
         <input type="text" name='categories' placeholder='add categories' onChange={ addCategory }/>
         <input type="text" name='small_title' placeholder='add' onChange={ changeHandler }/>
 
-        <button type='button' onClick={ handleAddSection }>Add Section</button>
+        <button type='button' onClick={ handleAddObject }>Add Object</button>
 
-        { blockList.map( ( block, blockIndex ) => (
-          <div key={ blockIndex }>
-            <h3>
-              Section
-              {blockIndex + 1}
-            </h3>
+        <div>
+          {inputSets.map( ( inputSet, index ) => (
+            <div key={ index }>
+              <h3>
+                Object
+                {index + 1}
+              </h3>
 
-            {block.fields.map( ( field, fieldIndex ) => (
-              <div key={ fieldIndex }>
-                {field.type === 'text' && (
-                  <input
-                    type="text"
-                    value={ field.value }
-                    onChange={ ( event ) => handleFieldChange( blockIndex, fieldIndex, event ) }
-                  />
-                )}
-                {field.type === 'description' && (
-                  <input
-                    type="text"
-                    value={ field.value }
-                    onChange={ ( event ) => handleFieldChange( blockIndex, fieldIndex, event ) }
-                  />
-                )}
-                {field.type === 'image' && (
-                  <input
-                    type="file"
-                    value={ field.value }
-                    onChange={ ( event ) => handleFieldChange( blockIndex, fieldIndex, event ) }
-                  />
-                )}
-                {field.type === 'video' && (
-                  <input
-                    type="url"
-                    value={ field.value }
-                    onChange={ ( event ) => handleFieldChange( blockIndex, fieldIndex, event ) }
-                  />
-                )}
-                <button
-                  onClick={ () => handleRemoveField( blockIndex, fieldIndex ) }
-                  type='button'
-                >
-                  Remove Field
-                </button>
-              </div>
-            ) ) }
+              <input
+                type="text"
+                value={ inputSet.title || '' }
+                onChange={ ( e ) => handleInputChange( index, 'title', e.target.value ) }
+                placeholder="Title"
+              />
 
-            <div>
-              <select onChange={ ( event ) => handleAddField( blockIndex, event.target.value ) }>
-                <option value="">Select a field type</option>
-                <option value="text">Text Field</option>
-                <option value="description">description Field</option>
-                <option value="image">Image Field</option>
-                <option value="video">Video Field</option>
-              </select>
+              <input
+                type="text"
+                value={ inputSet.description || '' }
+                onChange={ ( e ) => handleInputChange( index, 'description', e.target.value ) }
+                placeholder="Description"
+              />
+
+              <input
+                type="number"
+                value={ inputSet.price || '' }
+                onChange={ ( e ) => handleInputChange( index, 'price', e.target.value ) }
+                placeholder="Price"
+              />
+
+              {/* eslint-disable-next-line max-len */}
+              <button type='button' onClick={ () => handleRemoveObject( index ) }>Remove Object</button>
             </div>
+          ) )}
+        </div>
 
+        {blockList.map( ( block, blockIndex ) => (
+          <div key={ blockIndex }>
             {/* eslint-disable-next-line max-len */}
-            <button type='button' onClick={ () => handleRemoveSection( blockIndex ) }>Remove Section</button>
+            <input type="text" value={ newParamKey } onChange={ ( e ) => setNewParamKey( e.target.value ) } />
+            {/* eslint-disable-next-line max-len */}
+            <input type="text" value={ newParamValue } onChange={ ( e ) => setNewParamValue( e.target.value ) } />
+            <button type='button' onClick={ () => handleAddParam( block.id ) }>Add Param</button>
           </div>
         ) )}
 
