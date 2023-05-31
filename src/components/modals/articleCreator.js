@@ -2,169 +2,236 @@ import React, { useState } from 'react';
 
 import { ArticleWrapper } from './styled';
 
+export const TextComponent = ( { onChange, add } ) => {
+  return (
+    <div>
+      <input
+        type="text"
+        placeholder='title'
+        name='title'
+        onChange={ onChange }
+      />
+
+      <button type='button' onClick={ add }>Add Value</button>
+    </div>
+  );
+};
+
+export const TextAreaComponent = ( { onChange, add } ) => {
+  return (
+    <div>
+      <textarea name="description" onChange={ onChange } placeholder='type text here...'></textarea>
+
+      <button type='button' onClick={ add }>Add Value</button>
+    </div>
+  );
+};
+
+export const CodeComponent = ( { onChange, add } ) => {
+  return (
+    <div>
+      <textarea name="description" onChange={ onChange } placeholder='type code here...'></textarea>
+
+      <button type='button' onClick={ add }>Add Value</button>
+    </div>
+  );
+};
+
+export const ImageComponent = ( { onChange, add } ) => {
+  return (
+    <div>
+      <input
+        type="file"
+        placeholder='title'
+        name='image'
+        onChange={ onChange }
+      />
+
+      <button onClick={ add }>Add Value</button>
+    </div>
+  );
+};
+
 const AddBlock = () => {
-  const [ blockList, setBlockList ] = useState( [] );
-  const [ banner, setBanner ] = useState( null );
+  const [ sections, setSections ] = useState( [] );
+  const [ inputType, setInputType ] = useState( '' );
+  const [ inputValue, setInputValue ] = useState( '' );
+  const [ inputName, setInputName ] = useState( '' );
+  const [ currentBlock, setCurrentBlock ] = useState( {
+    id: 1,
+    sortOrder: 1,
+  } );
+  const [ setFile ] = useState( null );
   const [ category, setCategory ] = useState( [] );
   const [ form, setForm ] = useState( {
-    id: 0,
-    title: '',
-    description: '',
-    price: 0,
+    id: 1,
+    desc: '',
+    banner: null,
+    classes: '',
+    category: [],
+    content: [],
   } );
-  // const [ showInputs, setShowInputs ] = useState( false );
-  const [ inputSets, setInputSets ] = useState( [ {} ] );
-  console.log( 'blockList', blockList );
 
   const changeHandler = ( event ) => {
     setForm( { ...form, [ event.target.name ]: event.target.value } );
   };
 
-  const addCategory = ( e ) => {
+  const changeCat = ( e ) => {
     setCategory( e.target.value.split( ',' ) );
   };
 
-  const handleAddObject = () => {
-    const newObject = { };
-    const selectedFields = inputSets[ inputSets.length - 1 ];
-
-    Object.entries( selectedFields ).forEach( ( [ key, value ] ) => {
-      newObject[ key ] = value;
+  const handleButtonClick = () => {
+    setCurrentBlock( {
+      id: currentBlock.id + 1,
+      sortOrder: currentBlock.sortOrder + 1,
     } );
-
-    setBlockList( ( prevDataList ) => [ ...prevDataList, newObject ] );
-    setInputSets( ( prevInputSets ) => [ ...prevInputSets, {} ] );
+    setSections( ( prevArray ) => [ ...prevArray, currentBlock ] );
   };
 
-  const handleInputChange = ( index, key, value ) => {
-    setInputSets( ( prevInputSets ) => {
-      const updatedInputSets = [ ...prevInputSets ];
-      updatedInputSets[ index ][ key ] = value;
-      return updatedInputSets;
-    } );
+  const addFields = ( type ) => {
+    setInputType( type );
+    setInputName( type );
   };
 
-  const handleRemoveObject = ( index ) => {
-    setBlockList( ( prevDataList ) => {
-      const updatedDataList = [ ...prevDataList ];
-      updatedDataList.splice( index, 1 );
-      return updatedDataList;
-    } );
-    setInputSets( ( prevInputSets ) => {
-      const updatedInputSets = [ ...prevInputSets ];
-      updatedInputSets.splice( index, 1 );
-      return updatedInputSets;
-    } );
+  const handleInputChange = ( e ) => {
+    setInputValue( e.target.value );
   };
 
-  const handleSubmit = ( event ) => {
-    event.preventDefault();
-    console.log( blockList ); // Log all the data
+  const handleAddValue = ( index ) => {
+    const updatedList = [ ...sections ];
+    updatedList[ index ] = { ...updatedList[ index ], [ inputName ]: inputValue };
+    setSections( updatedList );
+  };
 
-    const data = {
+  const renderBlocks = ( index ) =>{
+    switch ( inputType ) {
+      case 'title':
+        // eslint-disable-next-line max-len
+        return <TextComponent onChange={ handleInputChange } add={ () => handleAddValue( index ) }/>;
+
+      case 'text':
+        // eslint-disable-next-line max-len
+        return <TextAreaComponent onChange={ handleInputChange } add={ () => handleAddValue( index ) }/>;
+
+      case 'code':
+        // eslint-disable-next-line max-len
+        return <CodeComponent onChange={ handleInputChange } add={ () => handleAddValue( index ) }/>;
+
+      case 'file':
+        // eslint-disable-next-line max-len
+        return <ImageComponent onChange={ handleInputChange } add={ () => handleAddValue( index ) }/>;
+
+      default:
+        return null;
+    }
+  };
+
+  const handleSubmit = ( e ) => {
+    e.preventDefault();
+    const newData = {
       ...form,
       id: form.id + 1,
-      banner: banner,
-      created_date: new Date().toISOString(),
+      title: form.title,
+      desc: form.desc,
+      classes: form.classes,
       categories: category,
-      content: [ { small_title: form.small_title } ],
+      content: sections,
     };
 
-    // Convert the blockList to JSON string
-    const jsonData = JSON.stringify( data, null, 3 );
+    // Convert newData to JSON and save it as a file
+    const jsonData = JSON.stringify( newData, null, 2 );
     console.log( 'jsonData', jsonData );
-    // Create a Blob object with the JSON data
-    const blob = new Blob( [ jsonData ], { type: 'application/json' } );
-
-    // Create a URL for the Blob object
-    const url = URL.createObjectURL( blob );
-
-    // Create a link element
-    const link = document.createElement( 'a' );
-    link.href = url;
-    link.download = 'data.json'; // Specify the filename
-
-    // Simulate a click on the link to trigger the download
-    link.click();
-  };
-
-  const [ newParamKey, setNewParamKey ] = useState( '' );
-  const [ newParamValue, setNewParamValue ] = useState( '' );
-
-  const handleAddParam = ( objectId ) => {
-    setBlockList( ( prevObjects ) => {
-      const updatedObjects = prevObjects.map( ( object ) => {
-        if ( object.id === objectId ) {
-          const updatedObject = { ...object, [ newParamKey ]: newParamValue };
-          return updatedObject;
-        }
-        return object;
-      } );
-      return updatedObjects;
-    } );
-    setNewParamKey( '' ); // Reset the input field for the key after adding the parameter
-    setNewParamValue( '' ); // Reset the input field for the value after adding the parameter
+    // // Create a Blob object with the JSON data
+    // const blob = new Blob( [ jsonData ], { type: 'application/json' } );
+    //
+    // // Create a URL for the Blob object
+    // const url = URL.createObjectURL( blob );
+    //
+    // // Create a link element
+    // const link = document.createElement( 'a' );
+    // link.href = url;
+    // link.download = 'data.json'; // Specify the filename
+    //
+    // // Simulate a click on the link to trigger the download
+    // link.click();
   };
 
   return (
     <ArticleWrapper>
-      <form>
-        <input type="text" name='title' placeholder='title' onChange={ changeHandler }/>
-        <input type="file" onChange={ ( e ) => setBanner( e.target.files[ 0 ] ) }/>
-        <input type="text" name='description' placeholder='description' onChange={ changeHandler }/>
-        <input type="text" name='classes' placeholder='add classes' onChange={ changeHandler }/>
-        <input type="text" name='categories' placeholder='add categories' onChange={ addCategory }/>
-        <input type="text" name='small_title' placeholder='add' onChange={ changeHandler }/>
+      <div>
+        <form>
+          <h2>Add new article</h2>
 
-        <button type='button' onClick={ handleAddObject }>Add Object</button>
+          <input placeholder="main title" name="title" onChange={ changeHandler } required/>
 
-        <div>
-          {inputSets.map( ( inputSet, index ) => (
-            <div key={ index }>
-              <h3>
-                Object
-                {index + 1}
-              </h3>
+          <input placeholder="description" name="desc" onChange={ changeHandler } required/>
 
-              <input
-                type="text"
-                value={ inputSet.title || '' }
-                onChange={ ( e ) => handleInputChange( index, 'title', e.target.value ) }
-                placeholder="Title"
-              />
+          <input
+            placeholder="add classes(ex.column-4,column-sm-4)"
+            name="classes"
+            onChange={ changeHandler }
+            required
+          />
 
-              <input
-                type="text"
-                value={ inputSet.description || '' }
-                onChange={ ( e ) => handleInputChange( index, 'description', e.target.value ) }
-                placeholder="Description"
-              />
+          <input
+            placeholder="add banner"
+            type="file"
+            onChange={ ( e ) => setFile( e.target.files[ 0 ] ) }
+          />
 
-              <input
-                type="number"
-                value={ inputSet.price || '' }
-                onChange={ ( e ) => handleInputChange( index, 'price', e.target.value ) }
-                placeholder="Price"
-              />
+          <input placeholder="categories" onChange={ changeCat }/>
 
-              {/* eslint-disable-next-line max-len */}
-              <button type='button' onClick={ () => handleRemoveObject( index ) }>Remove Object</button>
-            </div>
-          ) )}
-        </div>
+          <button type='button' onClick={ handleButtonClick }>Create Section</button>
 
-        {blockList.map( ( block, blockIndex ) => (
-          <div key={ blockIndex }>
-            {/* eslint-disable-next-line max-len */}
-            <input type="text" value={ newParamKey } onChange={ ( e ) => setNewParamKey( e.target.value ) } />
-            {/* eslint-disable-next-line max-len */}
-            <input type="text" value={ newParamValue } onChange={ ( e ) => setNewParamValue( e.target.value ) } />
-            <button type='button' onClick={ () => handleAddParam( block.id ) }>Add Param</button>
-          </div>
-        ) )}
+          {
+            sections.map( ( object, index ) => {
+              return (
+                <div key={ index }>
+                  <button type='button' onClick={ () => addFields( 'title' ) }>add title</button>
+                  <button type='button' onClick={ () => addFields( 'text' ) }>add text</button>
+                  <button type='button' onClick={ () => addFields( 'code' ) }>add code</button>
+                  <button type='button' onClick={ () => addFields( 'file' ) }>add image</button>
 
-        <button onClick={ handleSubmit }>Submit</button>
-      </form>
+                  {renderBlocks( index )}
+                  <div style={ { border: '1px solid red' } }>
+                    <p>
+                      index:
+                      {index}
+                    </p>
+
+                    <p>
+                      ID:
+                      {object.id}
+                    </p>
+
+                    <p>
+                      sortOrder:
+                      {object.sortOrder}
+                    </p>
+
+                    <p>
+                      title:
+                      {object.title || 'null' }
+                    </p>
+
+                    <p>
+                      text:
+                      {object.text || 'null' }
+                    </p>
+
+                    <p>
+                      code:
+                      {object.code || 'null' }
+                    </p>
+                  </div>
+                </div>
+              );
+            } )
+          }
+
+          <button type='submit' onClick={ ( e ) => handleSubmit( e ) }>Save</button>
+        </form>
+      </div>
     </ArticleWrapper>
   );
 };

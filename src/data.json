@@ -1,47 +1,28 @@
 [
   {
-    "id": 1,
-    "title": "JS MAth",
-    "description": "",
-    "created_date": "2023-05-29T14:10:08.977Z",
+    "id": 2,
+    "desc": "i am test article",
+    "banner": null,
+    "classes": "column-4",
+    "category": ["Javascript"],
     "content": [
       {
-        "fields": [
-          {
-            "type": "text",
-            "value": "Math<pi",
-            "desc": "",
-            "sortOrder": 2
-          },
-          {
-            "type": "description",
-            "value": "повертає чисто ПІ",
-            "desc": "",
-            "sortOrder": 2
-          }
-        ]
+        "id": 1,
+        "sortOrder": 1,
+        "title": "title section1",
+        "text": "test text 1"
       },
       {
-        "fields": [
-          {
-            "type": "text",
-            "value": "mATh> florr()",
-            "desc": "",
-            "sortOrder": 2
-          },
-          {
-            "type": "text",
-            "value": "pfjrheuke' ojcm",
-            "desc": "",
-            "sortOrder": 2
-          }
-        ]
+        "id": 2,
+        "sortOrder": 2,
+        "title": "title22222",
+        "code": "<div className=\"top\">\n                      <div className=\"dot\"/>\n                      <div className=\"dot\"/>\n                      <div className=\"dot\"/>\n                    </div>"
       }
     ],
-    "classes": "column-4",
-    "banner": null,
+    "title": "JS JS",
     "categories": [
-      "JS"
+      "JS",
+      " css"
     ]
   }
 ]

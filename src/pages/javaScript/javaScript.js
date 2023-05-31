@@ -1,11 +1,12 @@
 import React from 'react';
 
 import { JavascriptWrapper } from './styled.js';
-import articlesData from './../../articles.json';
+// import articlesData from './../../articles.json';
+import testArticle from './../../data.json';
 import Card from '../../components/card/card';
 
 const JavaScript = ( { isMenuOpen } ) => {
-  console.log( 'articlesData', articlesData );
+  console.log( 'articlesData', testArticle );
   return (
     <JavascriptWrapper isMenuOpen={ isMenuOpen }>
       <div className="container" style={ { paddingLeft: '0' } }>
@@ -16,7 +17,7 @@ const JavaScript = ( { isMenuOpen } ) => {
         </div>
         <div className="row">
           {
-            articlesData.map( ( item ) => {
+            testArticle.map( ( item ) => {
               return (
                 <div className="column column-3" key={ item.id }><Card data={ item }/></div>
               );

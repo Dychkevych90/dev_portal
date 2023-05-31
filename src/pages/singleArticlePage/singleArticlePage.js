@@ -3,12 +3,15 @@ import React from 'react';
 import { SingleArticle, CodeBlock } from './styled.js';
 
 import { useParams } from 'react-router';
-import articlesData from './../../data.json';
+// import articlesData from './../../articles.json';
+import testArticle from './../../data.json';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 const SingleArticlePage = ( { isMenuOpen } ) => {
   const { id } = useParams();
-  const article = articlesData.find( ( article ) => article.id === Number( id ) );
-  console.log( 'article', article );
+  const article = testArticle.find( ( article ) => article.id === Number( id ) );
+  console.log( 'testArticle', testArticle );
   return (
     <SingleArticle isMenuOpen={ isMenuOpen }>
       <div className="main_block">
@@ -19,82 +22,36 @@ const SingleArticlePage = ( { isMenuOpen } ) => {
         <div className='row' >
           {
             article.content.map( ( section, sectionIndex ) => {
-              return section.fields.map( ( field, fieldIndex ) => {
-                console.log( 'field', field );
-                return (
-                  <div className={ `column ${article.classes}` } key={ fieldIndex }>
-                    <div className='small_title'>
-                      {field.value}
-                    </div>
-                    <div className="desc">{field.description}</div>
-                    <CodeBlock>
-                      <div className="top">
-                        <div className="dot"/>
-                        <div className="dot"/>
-                        <div className="dot"/>
-                      </div>
-                      <div className="bottom">
-                        {/* {Object.values( block.code ).map( ( codeValue, index ) => ( */}
-                        {/*   <div className="code_row" key={ index }> */}
-                        {/*     <SyntaxHighlighter */}
-                        {/*       customStyle={ { */}
-                        {/*         backgroundColor: 'transparent', */}
-                        {/*         padding: '0', */}
-                        {/*         margin: '0 10px 0 0', */}
-                        {/*       } } */}
-                        {/*       language="javascript" */}
-                        {/*       style={ vscDarkPlus } */}
-                        {/*       className='code' */}
-                        {/*     > */}
-                        {/*       {codeValue.method} */}
-                        {/*     </SyntaxHighlighter> */}
-                        {/*     <span className='console_log_color'>{codeValue.output}</span> */}
-                        {/*   </div> */}
-                        {/* ) )} */}
-                      </div>
-                    </CodeBlock>
+              return (
+                <div className={ `column ${section.classes}` } key={ sectionIndex }>
+                  <div className='small_title'>
+                    {section.title}
                   </div>
-                );
-              } );
+                  <div className="desc">{section.description}</div>
+                  <CodeBlock>
+                    <div className="top">
+                      <div className="dot"/>
+                      <div className="dot"/>
+                      <div className="dot"/>
+                    </div>
+                    <div className="bottom">
+                      <SyntaxHighlighter
+                        customStyle={ {
+                          backgroundColor: 'transparent',
+                          padding: '0',
+                          margin: '0 10px 0 0',
+                        } }
+                        language="javascript"
+                        style={ vscDarkPlus }
+                        className='code'
+                      >
+                        {section.code}
+                      </SyntaxHighlighter>
+                    </div>
+                  </CodeBlock>
+                </div>
+              );
             } )
-            // article.content.map( ( item ) =>
-            //   Object.values( item ).map( ( block ) => {
-            //     return (
-            //       <div className={ `column ${article.classes}` } key={ block.id }>
-            //         <div className='small_title'>
-            //           {block.small_title}
-            //         </div>
-            //         <div className="desc">{block.desc}</div>
-            //         <CodeBlock>
-            //           <div className="top">
-            //             <div className="dot"/>
-            //             <div className="dot"/>
-            //             <div className="dot"/>
-            //           </div>
-            //           <div className="bottom">
-            //             {Object.values( block.code ).map( ( codeValue, index ) => (
-            //               <div className="code_row" key={ index }>
-            //                 <SyntaxHighlighter
-            //                   customStyle={ {
-            //                     backgroundColor: 'transparent',
-            //                     padding: '0',
-            //                     margin: '0 10px 0 0',
-            //                   } }
-            //                   language="javascript"
-            //                   style={ vscDarkPlus }
-            //                   className='code'
-            //                 >
-            //                   {codeValue.method}
-            //                 </SyntaxHighlighter>
-            //                 <span className='console_log_color'>{codeValue.output}</span>
-            //               </div>
-            //             ) )}
-            //           </div>
-            //         </CodeBlock>
-            //       </div>
-            //     );
-            //   } ),
-            // )
           }
         </div>
       </div>
