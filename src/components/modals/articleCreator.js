@@ -64,7 +64,7 @@ const AddBlock = () => {
     id: 1,
     sortOrder: 1,
   } );
-  const [ file, setFile ] = useState( null );
+  const [ setFile ] = useState( null );
   const [ category, setCategory ] = useState( [] );
   const [ form, setForm ] = useState( {
     id: 1,
@@ -98,6 +98,10 @@ const AddBlock = () => {
 
   const handleInputChange = ( e ) => {
     setInputValue( e.target.value );
+  };
+
+  const handleImageChange = ( e ) => {
+    setInputValue( e.target.files[ 0 ] );
   };
 
   const handleAddValue = ( index ) => {
@@ -179,6 +183,51 @@ const AddBlock = () => {
     );
   };
 
+  const handleSectionsImageUpload = ( event, index ) => {
+    const file = inputValue;
+    console.log( 'file', file );
+    const fileName = new Date().getTime() + file.name;
+    const storage = getStorage( app );
+    const storageRef = ref( storage, fileName );
+    const uploadTask = uploadBytesResumable( storageRef, file );
+    // Register three observers:
+    // 1. 'state_changed' observer, called any time the state changes
+    // 2. Error observer, called on failure
+    // 3. Completion observer, called on successful completion
+    uploadTask.on(
+        'state_changed',
+        ( snapshot ) => {
+        // Observe state change events such as progress, pause, and resume
+        // eslint-disable-next-line max-len
+        // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+          const progress =
+          ( snapshot.bytesTransferred / snapshot.totalBytes ) * 100;
+          console.log( 'Upload is ' + progress + '% done' );
+          switch ( snapshot.state ) {
+            case 'paused':
+              console.log( 'Upload is paused' );
+              break;
+            case 'running':
+              console.log( 'Upload is running' );
+              break;
+            default:
+          }
+        },
+        ( error ) => {
+        // Handle unsuccessful uploads
+        },
+        () => {
+        // Handle successful uploads on complete
+        // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+          getDownloadURL( uploadTask.snapshot.ref ).then( ( downloadURL ) => {
+            const updatedList = [ ...sections ];
+            updatedList[ index ] = { ...updatedList[ index ], [ inputName ]: downloadURL };
+            setSections( updatedList );
+          } );
+        },
+    );
+  };
+
   const renderBlocks = ( index ) =>{
     switch ( inputType ) {
       case 'title':
@@ -195,7 +244,7 @@ const AddBlock = () => {
 
       case 'file':
         // eslint-disable-next-line max-len
-        return <ImageComponent onChange={ handleInputChange } add={ () => handleAddValue( index ) }/>;
+        return <ImageComponent onChange={ handleImageChange } add={ ( event ) => handleSectionsImageUpload( index ) }/>;
 
       default:
         return null;
