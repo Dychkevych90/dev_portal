@@ -2,7 +2,7 @@
   {
     "id": 2,
     "desc": "i am test article",
-    "banner": null,
+    "banner": "https://firebasestorage.googleapis.com/v0/b/dev-portal-5dbdc.appspot.com/o/html.jpg?alt=media&token=4ef29795-3110-4b85-8f81-a4b248fd8ac7&_gl=1*1pdbxu*_ga*Mzc3MDI0MjEwLjE2ODU2MDc0MjI.*_ga_CW55HF8NVT*MTY4NTYxMTUxNy4yLjEuMTY4NTYxNjMxOS4wLjAuMA..",
     "classes": "column-4",
     "category": ["Javascript"],
     "content": [

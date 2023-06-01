@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 
+import { getStorage, ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
+import app from '../../firebase';
+
 import { ArticleWrapper } from './styled';
 
 export const TextComponent = ( { onChange, add } ) => {
@@ -61,7 +64,7 @@ const AddBlock = () => {
     id: 1,
     sortOrder: 1,
   } );
-  const [ setFile ] = useState( null );
+  const [ file, setFile ] = useState( null );
   const [ category, setCategory ] = useState( [] );
   const [ form, setForm ] = useState( {
     id: 1,
@@ -71,7 +74,7 @@ const AddBlock = () => {
     category: [],
     content: [],
   } );
-
+  console.log( 'file', file );
   const changeHandler = ( event ) => {
     setForm( { ...form, [ event.target.name ]: event.target.value } );
   };
@@ -101,29 +104,6 @@ const AddBlock = () => {
     const updatedList = [ ...sections ];
     updatedList[ index ] = { ...updatedList[ index ], [ inputName ]: inputValue };
     setSections( updatedList );
-  };
-
-  const renderBlocks = ( index ) =>{
-    switch ( inputType ) {
-      case 'title':
-        // eslint-disable-next-line max-len
-        return <TextComponent onChange={ handleInputChange } add={ () => handleAddValue( index ) }/>;
-
-      case 'text':
-        // eslint-disable-next-line max-len
-        return <TextAreaComponent onChange={ handleInputChange } add={ () => handleAddValue( index ) }/>;
-
-      case 'code':
-        // eslint-disable-next-line max-len
-        return <CodeComponent onChange={ handleInputChange } add={ () => handleAddValue( index ) }/>;
-
-      case 'file':
-        // eslint-disable-next-line max-len
-        return <ImageComponent onChange={ handleInputChange } add={ () => handleAddValue( index ) }/>;
-
-      default:
-        return null;
-    }
   };
 
   const handleSubmit = ( e ) => {
@@ -156,6 +136,72 @@ const AddBlock = () => {
     // link.click();
   };
 
+  const handleImageUpload = ( event ) => {
+    const file = event.target.files[ 0 ];
+
+    const fileName = new Date().getTime() + file.name;
+    const storage = getStorage( app );
+    const storageRef = ref( storage, fileName );
+    const uploadTask = uploadBytesResumable( storageRef, file );
+    // Register three observers:
+    // 1. 'state_changed' observer, called any time the state changes
+    // 2. Error observer, called on failure
+    // 3. Completion observer, called on successful completion
+    uploadTask.on(
+        'state_changed',
+        ( snapshot ) => {
+        // Observe state change events such as progress, pause, and resume
+          // eslint-disable-next-line max-len
+        // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+          const progress =
+          ( snapshot.bytesTransferred / snapshot.totalBytes ) * 100;
+          console.log( 'Upload is ' + progress + '% done' );
+          switch ( snapshot.state ) {
+            case 'paused':
+              console.log( 'Upload is paused' );
+              break;
+            case 'running':
+              console.log( 'Upload is running' );
+              break;
+            default:
+          }
+        },
+        ( error ) => {
+        // Handle unsuccessful uploads
+        },
+        () => {
+        // Handle successful uploads on complete
+        // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+          getDownloadURL( uploadTask.snapshot.ref ).then( ( downloadURL ) => {
+            setFile( downloadURL );
+          } );
+        },
+    );
+  };
+
+  const renderBlocks = ( index ) =>{
+    switch ( inputType ) {
+      case 'title':
+        // eslint-disable-next-line max-len
+        return <TextComponent onChange={ handleInputChange } add={ () => handleAddValue( index ) }/>;
+
+      case 'text':
+        // eslint-disable-next-line max-len
+        return <TextAreaComponent onChange={ handleInputChange } add={ () => handleAddValue( index ) }/>;
+
+      case 'code':
+        // eslint-disable-next-line max-len
+        return <CodeComponent onChange={ handleInputChange } add={ () => handleAddValue( index ) }/>;
+
+      case 'file':
+        // eslint-disable-next-line max-len
+        return <ImageComponent onChange={ handleInputChange } add={ () => handleAddValue( index ) }/>;
+
+      default:
+        return null;
+    }
+  };
+
   return (
     <ArticleWrapper>
       <div>
@@ -176,7 +222,7 @@ const AddBlock = () => {
           <input
             placeholder="add banner"
             type="file"
-            onChange={ ( e ) => setFile( e.target.files[ 0 ] ) }
+            onChange={ handleImageUpload }
           />
 
           <input placeholder="categories" onChange={ changeCat }/>
