@@ -12,7 +12,7 @@ import JavaScript from '../../pages/javaScript/javaScript';
 import GlobalStyles from '../../mainStyles';
 import { lightTheme, darkTheme } from '../../mainStyles';
 
-import AddBlock from '../modals/articleCreator';
+import AddBlock from '../modals/createArticle/articleCreator';
 
 const App = () => {
   const [ isMenuOpen, setIsMenuOpen ] = useState( true );

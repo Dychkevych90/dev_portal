@@ -1,59 +1,15 @@
 import React, { useState } from 'react';
 
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
-import app from '../../firebase';
+import app from '../../../firebase';
+
+import TextComponent from './blocks/textBlock.js';
+import ImageComponent from './blocks/imageBlock';
+import CodeComponent from './blocks/codeBlock';
+import TextAreaComponent from './blocks/textareaBlock';
 
 import { ArticleWrapper } from './styled';
 
-export const TextComponent = ( { onChange, add } ) => {
-  return (
-    <div>
-      <input
-        type="text"
-        placeholder='title'
-        name='title'
-        onChange={ onChange }
-      />
-
-      <button type='button' onClick={ add }>Add Value</button>
-    </div>
-  );
-};
-
-export const TextAreaComponent = ( { onChange, add } ) => {
-  return (
-    <div>
-      <textarea name="description" onChange={ onChange } placeholder='type text here...'></textarea>
-
-      <button type='button' onClick={ add }>Add Value</button>
-    </div>
-  );
-};
-
-export const CodeComponent = ( { onChange, add } ) => {
-  return (
-    <div>
-      <textarea name="description" onChange={ onChange } placeholder='type code here...'></textarea>
-
-      <button type='button' onClick={ add }>Add Value</button>
-    </div>
-  );
-};
-
-export const ImageComponent = ( { onChange, add } ) => {
-  return (
-    <div>
-      <input
-        type="file"
-        placeholder='title'
-        name='image'
-        onChange={ onChange }
-      />
-
-      <button onClick={ add }>Add Value</button>
-    </div>
-  );
-};
 
 const AddBlock = () => {
   const [ sections, setSections ] = useState( [] );
@@ -74,7 +30,7 @@ const AddBlock = () => {
     category: [],
     content: [],
   } );
-  console.log( 'file', file );
+
   const changeHandler = ( event ) => {
     setForm( { ...form, [ event.target.name ]: event.target.value } );
   };
@@ -253,80 +209,113 @@ const AddBlock = () => {
 
   return (
     <ArticleWrapper>
-      <div>
-        <form>
-          <h2>Add new article</h2>
+      <div className="background" />
+      <form>
+        <h2 className='title'>Add new article</h2>
 
-          <input placeholder="main title" name="title" onChange={ changeHandler } required/>
+        <input placeholder="main title" name="title" onChange={ changeHandler } required/>
 
-          <input placeholder="description" name="desc" onChange={ changeHandler } required/>
+        <input placeholder="description" name="desc" onChange={ changeHandler } required/>
 
-          <input
-            placeholder="add classes(ex.column-4,column-sm-4)"
-            name="classes"
-            onChange={ changeHandler }
-            required
-          />
+        <input
+          placeholder="add classes(ex.column-4,column-sm-4)"
+          name="classes"
+          onChange={ changeHandler }
+          required
+        />
 
-          <input
-            placeholder="add banner"
-            type="file"
-            onChange={ handleImageUpload }
-          />
+        <input
+          placeholder="add banner"
+          type="file"
+          onChange={ handleImageUpload }
+        />
 
-          <input placeholder="categories" onChange={ changeCat }/>
+        <input placeholder="categories" onChange={ changeCat }/>
 
-          <button type='button' onClick={ handleButtonClick }>Create Section</button>
+        <button
+          className='create_section'
+          type='button'
+          onClick={ handleButtonClick }
+        >
+            Create Section
+        </button>
 
+        <div className="sections">
           {
             sections.map( ( object, index ) => {
               return (
-                <div key={ index }>
-                  <button type='button' onClick={ () => addFields( 'title' ) }>add title</button>
-                  <button type='button' onClick={ () => addFields( 'text' ) }>add text</button>
-                  <button type='button' onClick={ () => addFields( 'code' ) }>add code</button>
-                  <button type='button' onClick={ () => addFields( 'file' ) }>add image</button>
+                <div key={ index } className='section'>
+                  <div className="buttons">
+                    <button
+                      type='button'
+                      onClick={ () => addFields( 'title', index ) }
+                    >
+                        add title
+                    </button>
+                    <button
+                      type='button'
+                      onClick={ () => addFields( 'text', index ) }
+                    >
+                        add text
+                    </button>
+                    <button
+                      type='button'
+                      onClick={ () => addFields( 'code', index ) }
+                    >
+                        add code
+                    </button>
+                    <button
+                      type='button'
+                      onClick={ () => addFields( 'file', index ) }
+                    >
+                        add image
+                    </button>
+                  </div>
 
                   {renderBlocks( index )}
-                  <div style={ { border: '1px solid red' } }>
-                    <p>
-                      index:
-                      {index}
-                    </p>
 
-                    <p>
-                      ID:
+                  <div className='preview'>
+                    <div className='preview_item'>
+                      <span className='preview_item--title'>ID:</span>
                       {object.id}
-                    </p>
+                    </div>
 
-                    <p>
-                      sortOrder:
+                    <div className='preview_item'>
+                      <span className='preview_item--title'>sortOrder:</span>
                       {object.sortOrder}
-                    </p>
+                    </div>
 
-                    <p>
-                      title:
-                      {object.title || 'null' }
-                    </p>
+                    <div className='preview_item'>
+                      <span className='preview_item--title'>title:</span>
+                      {object.title }
+                    </div>
 
-                    <p>
-                      text:
-                      {object.text || 'null' }
-                    </p>
+                    <div className='preview_item text'>
+                      <span className='preview_item--title'>text:</span>
+                      <span>{object.text }</span>
+                    </div>
 
-                    <p>
-                      code:
-                      {object.code || 'null' }
-                    </p>
+                    <div className='preview_item code'>
+                      <span className='preview_item--title'>code:</span>
+                      <pre>
+                        {object.code }
+                      </pre>
+                    </div>
                   </div>
                 </div>
               );
             } )
           }
+        </div>
 
-          <button type='submit' onClick={ ( e ) => handleSubmit( e ) }>Save</button>
-        </form>
-      </div>
+        <button
+          className='save'
+          type='submit'
+          onClick={ ( e ) => handleSubmit( e ) }
+        >
+            Save
+        </button>
+      </form>
     </ArticleWrapper>
   );
 };
