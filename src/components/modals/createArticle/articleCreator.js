@@ -11,7 +11,7 @@ import TextAreaComponent from './blocks/textareaBlock';
 import { ArticleWrapper } from './styled';
 
 
-const AddBlock = () => {
+const ArticleCreator = () => {
   const [ sections, setSections ] = useState( [] );
   const [ inputType, setInputType ] = useState( '' );
   const [ inputValue, setInputValue ] = useState( '' );
@@ -21,13 +21,14 @@ const AddBlock = () => {
     sortOrder: 1,
   } );
   const [ setFile ] = useState( null );
-  const [ category, setCategory ] = useState( [] );
+  const [ pills, setPills ] = useState( [] );
   const [ form, setForm ] = useState( {
     id: 1,
     desc: '',
     banner: null,
     classes: '',
-    category: [],
+    category: '',
+    pills: [],
     content: [],
   } );
 
@@ -36,7 +37,7 @@ const AddBlock = () => {
   };
 
   const changeCat = ( e ) => {
-    setCategory( e.target.value.split( ',' ) );
+    setPills( e.target.value.split( ',' ) );
   };
 
   const handleButtonClick = () => {
@@ -74,7 +75,8 @@ const AddBlock = () => {
       title: form.title,
       desc: form.desc,
       classes: form.classes,
-      categories: category,
+      category: form.category,
+      pills: pills,
       content: sections,
     };
 
@@ -225,6 +227,13 @@ const AddBlock = () => {
         />
 
         <input
+          placeholder="add one main category(ex.JS or CSS)"
+          name="category"
+          onChange={ changeHandler }
+          required
+        />
+
+        <input
           placeholder="add banner"
           type="file"
           onChange={ handleImageUpload }
@@ -320,4 +329,4 @@ const AddBlock = () => {
   );
 };
 
-export default AddBlock;
+export default ArticleCreator;

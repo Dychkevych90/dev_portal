@@ -12,8 +12,6 @@ import JavaScript from '../../pages/javaScript/javaScript';
 import GlobalStyles from '../../mainStyles';
 import { lightTheme, darkTheme } from '../../mainStyles';
 
-import AddBlock from '../modals/createArticle/articleCreator';
-
 const App = () => {
   const [ isMenuOpen, setIsMenuOpen ] = useState( true );
   const [ themeMode, setThemeMode ] = useState( 'dark' );
@@ -39,9 +37,6 @@ const App = () => {
           {/* eslint-disable-next-line max-len */}
           <Route exact path='/article/:category/:id' element={ <SingleArticlePage isMenuOpen={ isMenuOpen }/> }/>
         </Routes>
-
-        <AddBlock />
-
         {/* TODO: 1. logo ? */}
         {/* TODO: 2. preloader */}
         {/* TODO: 4. particles ? */}
