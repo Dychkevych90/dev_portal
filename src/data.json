@@ -1,28 +1,58 @@
 [
   {
     "id": 2,
-    "desc": "i am test article",
+    "desc": "",
     "banner": "https://firebasestorage.googleapis.com/v0/b/dev-portal-5dbdc.appspot.com/o/html.jpg?alt=media&token=4ef29795-3110-4b85-8f81-a4b248fd8ac7&_gl=1*1pdbxu*_ga*Mzc3MDI0MjEwLjE2ODU2MDc0MjI.*_ga_CW55HF8NVT*MTY4NTYxMTUxNy4yLjEuMTY4NTYxNjMxOS4wLjAuMA..",
     "classes": "column-4",
-    "category": ["Javascript"],
+    "category": "Javascript",
+    "pills": [
+      "JS",
+      ""
+    ],
     "content": [
       {
         "id": 1,
         "sortOrder": 1,
-        "title": "title section1",
-        "text": "test text 1"
+        "title": "Math.PI",
+        "text": "Повертає число РI:",
+        "code": "Math.PI // 3.141592653589793"
       },
       {
         "id": 2,
         "sortOrder": 2,
-        "title": "title22222",
-        "code": "<div className=\"top\">\n                      <div className=\"dot\"/>\n                      <div className=\"dot\"/>\n                      <div className=\"dot\"/>\n                    </div>"
+        "title": "Math.Round(x)",
+        "text": "Округляє число до найближчого цілого:",
+        "code": "Math.round(4.6) // 5\nMath.round(4.4) // 4"
+      },
+      {
+        "id": 3,
+        "sortOrder": 3,
+        "title": "Math.ceil(x)",
+        "text": "Повертає найбільше найближче ціле число.",
+        "code": "Math.ceil(7.1) // 8"
+      },
+      {
+        "id": 4,
+        "sortOrder": 4,
+        "title": "Math.floor(x)",
+        "text": "Повертає найменше найближче ціле число.",
+        "code": "Math.floor(7.1) // 7"
+      },
+      {
+        "id": 5,
+        "sortOrder": 5,
+        "title": "Math.trunc(x)",
+        "text": "Повертає цілу частину з числа відкидаючи дробну.",
+        "code": "Math.trunc(2.65) // 2"
+      },
+      {
+        "id": 6,
+        "sortOrder": 6,
+        "title": "Math.Round(x)",
+        "text": "Округляє число до найближчого цілого:",
+        "code": "Math.round(4.6) // 5\nMath.round(4.4) // 4"
       }
     ],
-    "title": "JS JS",
-    "categories": [
-      "JS",
-      " css"
-    ]
+    "title": "JavaScript Math"
   }
 ]

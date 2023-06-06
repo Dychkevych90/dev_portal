@@ -81,7 +81,16 @@ const Sidebar = ( { setIsMenuOpen, toggleTheme, themeMode } ) => {
 
         <div className="bottom">
           <button
-            style={ { padding: '10px', width: '100%', color: '#000', borderRadius: '10px' } }
+            style={ {
+              padding: '10px',
+              width: '200px',
+              color: '#000',
+              borderRadius: '10px',
+              height: '50px',
+              position: 'fixed',
+              bottom: '50px',
+              right: '50px',
+            } }
             onClick={ () => setIsModalOpen( !isModalOpen ) }
           >
             add article

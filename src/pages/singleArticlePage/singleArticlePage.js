@@ -7,27 +7,32 @@ import { useParams } from 'react-router';
 import testArticle from './../../data.json';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import ShareArticle from '../../components/modals/shareInSocial/telegram/telegram';
 
 const SingleArticlePage = ( { isMenuOpen } ) => {
   const { id } = useParams();
   const article = testArticle.find( ( article ) => article.id === Number( id ) );
-  console.log( 'testArticle', testArticle );
+  const articleUrl = window.location.href;
+  console.log( 'articleUrl', articleUrl );
+
   return (
     <SingleArticle isMenuOpen={ isMenuOpen }>
       <div className="main_block">
         <img className='main_block--image' src={ article.banner } alt="image"/>
         <div className="title">{article.title}</div>
+        <ShareArticle articleUrl={ articleUrl } bannerImageUrl={ article.banner }/>
       </div>
       <div className="container">
         <div className='row' >
           {
             article.content.map( ( section, sectionIndex ) => {
+              console.log( 'section', section );
               return (
-                <div className={ `column ${section.classes}` } key={ sectionIndex }>
+                <div className={ `column ${article.classes}` } key={ sectionIndex }>
                   <div className='small_title'>
                     {section.title}
                   </div>
-                  <div className="desc">{section.description}</div>
+                  <div className="desc">{section.text}</div>
                   <CodeBlock>
                     <div className="top">
                       <div className="dot"/>
