@@ -30,6 +30,8 @@ const ArticleCreator = () => {
     category: '',
     pills: [],
     content: [],
+    hasExample: 'No',
+    video: '',
   } );
 
   const changeHandler = ( event ) => {
@@ -186,6 +188,14 @@ const ArticleCreator = () => {
     );
   };
 
+  const handleSelectChange = ( event ) => {
+    const { value } = event.target;
+    setForm( ( prevForm ) => ( {
+      ...prevForm,
+      hasExample: value,
+    } ) );
+  };
+
   const renderBlocks = ( index ) =>{
     switch ( inputType ) {
       case 'title':
@@ -239,7 +249,13 @@ const ArticleCreator = () => {
           onChange={ handleImageUpload }
         />
 
-        <input placeholder="categories" onChange={ changeCat }/>
+        <input placeholder="add pills" onChange={ changeCat }/>
+
+        <select value={ form.hasExample } onChange={ handleSelectChange }>
+          <option value="No">Has example ?</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
 
         <button
           className='create_section'

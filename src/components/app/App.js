@@ -8,6 +8,7 @@ import Home from '../../pages/home/home';
 import HtmlCss from '../../pages/html&css/htmlCss';
 import SingleArticlePage from '../../pages/singleArticlePage/singleArticlePage';
 import JavaScript from '../../pages/javaScript/javaScript';
+import ReactPage from '../../pages/react/react';
 
 import GlobalStyles from '../../mainStyles';
 import { lightTheme, darkTheme } from '../../mainStyles';
@@ -34,6 +35,7 @@ const App = () => {
           <Route exact path='/' element={ <Home isMenuOpen={ isMenuOpen }/> }/>
           <Route exact path='/html-and-css' element={ <HtmlCss isMenuOpen={ isMenuOpen }/> }/>
           <Route exact path='/javascript' element={ <JavaScript isMenuOpen={ isMenuOpen }/> }/>
+          <Route exact path='/react' element={ <ReactPage isMenuOpen={ isMenuOpen }/> }/>
           {/* eslint-disable-next-line max-len */}
           <Route exact path='/article/:category/:id' element={ <SingleArticlePage isMenuOpen={ isMenuOpen }/> }/>
         </Routes>
