@@ -8,9 +8,18 @@ const SingleArticle = styled.div`
     position: relative;
     margin-bottom: 50px;
     
+    .background {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.2);
+      z-index: 2;
+    }
+    
     &--image {
       height: 400px;
-      opacity: .6;
     }
     
     .title {
@@ -20,6 +29,7 @@ const SingleArticle = styled.div`
       color: goldenrod;
       font-size: 80px;
       font-weight: 700;
+      z-index: 2;
     }
   }
 

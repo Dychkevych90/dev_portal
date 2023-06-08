@@ -9,6 +9,8 @@ const GlobalStyles = createGlobalStyle`
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    position: relative;
+    z-index: 1;
   }
   
   .section_title {
@@ -47,6 +49,19 @@ const GlobalStyles = createGlobalStyle`
     height: 100%;
     object-fit: cover;
   }
+  
+  #tsparticles {
+    position: relative;
+    z-index: -1;
+   }
+
+  @media (max-width: 991px) {
+    #tsparticles {
+      display: none;
+    }
+  }
+  
+  
   
   // Responsive grid styles
   .container {

@@ -4,6 +4,7 @@ const SocialMediaSharedBtnWrapper = styled.div`
   position: absolute;
   bottom: 20px;
   left: 20px;
+  z-index: 2;
   
   .btn_container {
     display: flex;

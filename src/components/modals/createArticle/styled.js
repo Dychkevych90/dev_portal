@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 const ArticleWrapper = styled.div`
+  z-index: 100;
+  position: relative;
   
   form {
     display: flex;
@@ -13,7 +15,7 @@ const ArticleWrapper = styled.div`
     border-radius: 10px;
     min-width: 700px;
     padding: 30px;
-    z-index: 100;
+    z-index: 10;
     max-height: calc(90vh);
     overflow: auto;
 

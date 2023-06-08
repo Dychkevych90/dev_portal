@@ -136,14 +136,34 @@ const SideBarWrapper = styled.div`
   
   .logo {
     margin-bottom: 40px;
-    display: block;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 20px;
-    text-align: left;
-    padding: 0 10px 0 50px;
-    opacity: ${( props ) => props.openmenu ? '1' : '0'};
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: ${( props ) => props.openmenu ? '10px' : '10px 0'};
+    //opacity: ${( props ) => props.openmenu ? '1' : '0'};
     transition: .3s;
+    
+    img {
+      width: 60px;
+      min-width: 60px;
+      height: 60px;
+      object-fit: contain;
+      // a negative margin is needed to center the logo as its width is greater than the width of the parent column
+      margin-left: ${( props ) => props.openmenu ? '-15px' : '-7px'};
+      margin-right: ${( props ) => props.openmenu ? '20px' : '0'};
+      transition: .3s;
+    }
+    
+    .text {
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 20px;
+      text-align: left;
+      white-space: nowrap;
+      opacity: ${( props ) => props.openmenu ? '1' : '0'};
+      transform: translateX(${( props ) => props.openmenu ? '0' : '10px'});
+      transition: .3s;
+    }
   }
 `;
 

@@ -5,7 +5,7 @@ const CardWrapper = styled.div`
   flex-direction: column;
   align-items: flex-start;
   border-radius: 15px;
-  background-color: rgb(62 62 62 / 40%);
+  background-color: rgb(62 62 62 / 100%);
   
   .img {
     border-top-left-radius: 15px;

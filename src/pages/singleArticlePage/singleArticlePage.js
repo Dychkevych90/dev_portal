@@ -19,6 +19,7 @@ const SingleArticlePage = ( { isMenuOpen } ) => {
   return (
     <SingleArticle isMenuOpen={ isMenuOpen }>
       <div className="main_block">
+        <div className="background" />
         <img className='main_block--image' src={ article.banner } alt="image"/>
         <div className="title">{article.title}</div>
 

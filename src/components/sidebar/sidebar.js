@@ -12,6 +12,7 @@ import ArticleIcon from '@mui/icons-material/NoteAlt';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
+import logo from '../../assets/icons/logo.png';
 
 import { SideBarWrapper } from './styled.js';
 import ArticleCreator from '../modals/createArticle/articleCreator';
@@ -29,7 +30,10 @@ const Sidebar = ( { setIsMenuOpen, toggleTheme, themeMode } ) => {
     <>
       <SideBarWrapper openmenu={ openMenu }>
         <div className="top">
-          <a href="#" className="logo">CodeGeeks</a>
+          <div className="logo">
+            <img src={ logo } alt="logo"/>
+            <div className="text">CodeGeeks</div>
+          </div>
           <ul className="nav">
             <li className="nav_item">
               <NavLink to='/' className="link">
