@@ -140,7 +140,6 @@ const SideBarWrapper = styled.div`
     align-items: center;
     justify-content: flex-start;
     padding: ${( props ) => props.openmenu ? '10px' : '10px 0'};
-    //opacity: ${( props ) => props.openmenu ? '1' : '0'};
     transition: .3s;
     
     img {
