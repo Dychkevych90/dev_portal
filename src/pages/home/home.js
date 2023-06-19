@@ -6,7 +6,7 @@ const Home = ( { isMenuOpen } ) => {
     <HomeWrapper isMenuOpen={ isMenuOpen }>
       <div className='container'>
         <div className="row">
-          <div className="column-12">aloha</div>
+          <div className="column-12">Головна</div>
         </div>
       </div>
     </HomeWrapper>
