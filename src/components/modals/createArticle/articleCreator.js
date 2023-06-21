@@ -26,6 +26,7 @@ const ArticleCreator = () => {
     id: 1,
     desc: '',
     banner: null,
+    cover: 'No',
     classes: '',
     category: '',
     pills: [],
@@ -76,9 +77,11 @@ const ArticleCreator = () => {
       id: form.id + 1,
       title: form.title,
       desc: form.desc,
+      cover: form.cover,
       classes: form.classes,
       category: form.category,
       pills: pills,
+      hasExample: form.hasExample,
       content: sections,
     };
 
@@ -117,8 +120,8 @@ const ArticleCreator = () => {
         // Observe state change events such as progress, pause, and resume
           // eslint-disable-next-line max-len
         // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-          const progress =
-          ( snapshot.bytesTransferred / snapshot.totalBytes ) * 100;
+          const progress
+          = ( snapshot.bytesTransferred / snapshot.totalBytes ) * 100;
           console.log( 'Upload is ' + progress + '% done' );
           switch ( snapshot.state ) {
             case 'paused':
@@ -160,8 +163,8 @@ const ArticleCreator = () => {
         // Observe state change events such as progress, pause, and resume
         // eslint-disable-next-line max-len
         // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-          const progress =
-          ( snapshot.bytesTransferred / snapshot.totalBytes ) * 100;
+          const progress
+          = ( snapshot.bytesTransferred / snapshot.totalBytes ) * 100;
           console.log( 'Upload is ' + progress + '% done' );
           switch ( snapshot.state ) {
             case 'paused':
@@ -193,6 +196,14 @@ const ArticleCreator = () => {
     setForm( ( prevForm ) => ( {
       ...prevForm,
       hasExample: value,
+    } ) );
+  };
+
+  const handleCoverChange = ( event ) => {
+    const { value } = event.target;
+    setForm( ( prevForm ) => ( {
+      ...prevForm,
+      cover: value,
     } ) );
   };
 
@@ -248,6 +259,12 @@ const ArticleCreator = () => {
           type="file"
           onChange={ handleImageUpload }
         />
+
+        <select value={ form.cover } onChange={ handleCoverChange }>
+          <option value="No">Add custom cover ?</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
 
         <input placeholder="add pills" onChange={ changeCat }/>
 

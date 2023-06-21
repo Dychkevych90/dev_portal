@@ -15,6 +15,8 @@ import ReactPage from '../../pages/react/react';
 import GlobalStyles from '../../mainStyles';
 import { lightTheme, darkTheme } from '../../mainStyles';
 
+import test from '../../assets/images/test123.png';
+
 const App = () => {
   const [ isMenuOpen, setIsMenuOpen ] = useState( true );
   const [ themeMode, setThemeMode ] = useState( 'dark' );
@@ -97,6 +99,18 @@ const App = () => {
             },
           } }
         />
+
+        <img src={ test } alt="" style={ {
+          objectFit: 'cover',
+          opacity: .3,
+          width: '600px',
+          height: '600px',
+          position: 'fixed',
+          left: '50%',
+          top: '50%',
+          transform: 'translate(-50%, -50%)',
+          zIndex: '-100',
+        } }/>
 
         {/* TODO: 1. logo ? */}
         {/* TODO: 2. preloader */}

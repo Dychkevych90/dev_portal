@@ -26,6 +26,26 @@ const SingleArticlePage = ( { isMenuOpen } ) => {
         <ShareButtons url={ articleUrl } title={ article.title }/>
 
       </div>
+
+      {
+        article.hasExample === 'Yes' && (
+          <div className='example_block' style={ { position: 'relative' } }>
+            <div className="container">
+              <div className="row">
+                <div className="column lolumn-12">
+                  Example:
+                </div>
+              </div>
+              <div className="row">
+                <div className="column">
+                  <RenderExamplesComponents articleId={ article.id }/>
+                </div>
+              </div>
+            </div>
+          </div>
+        )
+      }
+
       <div className="container">
         <div className='row' >
           {
@@ -61,21 +81,6 @@ const SingleArticlePage = ( { isMenuOpen } ) => {
               );
             } )
           }
-        </div>
-      </div>
-
-      <div className='example_block' style={ { position: 'relative' } }>
-        <div className="container">
-          <div className="row">
-            <div className="column lolumn-12">
-              Example:
-            </div>
-          </div>
-          <div className="row">
-            <div className="column">
-              <RenderExamplesComponents articleId={ article.id }/>
-            </div>
-          </div>
         </div>
       </div>
     </SingleArticle>
