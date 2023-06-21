@@ -11,6 +11,7 @@ import HtmlCss from '../../pages/html&css/htmlCss';
 import SingleArticlePage from '../../pages/singleArticlePage/singleArticlePage';
 import JavaScript from '../../pages/javaScript/javaScript';
 import ReactPage from '../../pages/react/react';
+import PageWithPreloader from '../PageWithPreloader/pageWithPreloader';
 
 import GlobalStyles from '../../mainStyles';
 import { lightTheme, darkTheme } from '../../mainStyles';
@@ -21,6 +22,17 @@ const App = () => {
   const [ isMenuOpen, setIsMenuOpen ] = useState( true );
   const [ themeMode, setThemeMode ] = useState( 'dark' );
 
+  // eslint-disable-next-line new-cap
+  const HomePageWithPreloader = PageWithPreloader( Home, isMenuOpen );
+  // eslint-disable-next-line new-cap
+  const HtmlCssPageWithPreloader = PageWithPreloader( HtmlCss, isMenuOpen );
+  // eslint-disable-next-line new-cap
+  const JSPageWithPreloader = PageWithPreloader( JavaScript, isMenuOpen );
+  // eslint-disable-next-line new-cap
+  const ReactPageWithPreloader = PageWithPreloader( ReactPage, isMenuOpen );
+  // eslint-disable-next-line new-cap
+  const SingleArticlePageeWithPreloader = PageWithPreloader( SingleArticlePage, isMenuOpen );
+
   const toggleTheme = ( ) => {
     setThemeMode( ( prevMode ) => ( prevMode === 'light' ? 'dark' : 'light' ) );
   };
@@ -28,12 +40,7 @@ const App = () => {
   const theme = themeMode === 'light' ? lightTheme : darkTheme;
 
   const particlesInit = useCallback( async ( engine ) => {
-    console.log( engine );
     await loadFull( engine );
-  }, [] );
-
-  const particlesLoaded = useCallback( async ( container ) => {
-    await console.log( container );
   }, [] );
 
   return (
@@ -45,18 +52,20 @@ const App = () => {
         <Sidebar setIsMenuOpen={ setIsMenuOpen } toggleTheme={ toggleTheme } themeMode={ themeMode }/>
 
         <Routes>
-          <Route exact path='/' element={ <Home isMenuOpen={ isMenuOpen }/> }/>
-          <Route exact path='/html-and-css' element={ <HtmlCss isMenuOpen={ isMenuOpen }/> }/>
-          <Route exact path='/javascript' element={ <JavaScript isMenuOpen={ isMenuOpen }/> }/>
-          <Route exact path='/react' element={ <ReactPage isMenuOpen={ isMenuOpen }/> }/>
+          <Route exact path='/' element={ <HomePageWithPreloader /> }/>
           {/* eslint-disable-next-line max-len */}
-          <Route exact path='/article/:category/:id' element={ <SingleArticlePage isMenuOpen={ isMenuOpen }/> }/>
+          <Route exact path='/html-and-css' element={ <HtmlCssPageWithPreloader/> }/>
+          {/* eslint-disable-next-line max-len */}
+          <Route exact path='/javascript' element={ <JSPageWithPreloader/> }/>
+          <Route exact path='/react' element={ <ReactPageWithPreloader/> }/>
+          {/* eslint-disable-next-line max-len */}
+          <Route exact path='/article/:category/:id' element={ <SingleArticlePageeWithPreloader/> }/>
         </Routes>
 
         <Particles
           id="tsparticles"
           init={ particlesInit }
-          loaded={ particlesLoaded }
+          // loaded={ particlesLoaded }
           options={ {
             fpsLimit: 120,
             particles: {
@@ -111,6 +120,7 @@ const App = () => {
           transform: 'translate(-50%, -50%)',
           zIndex: '-100',
         } }/>
+
 
         {/* TODO: 1. logo ? */}
         {/* TODO: 2. preloader */}
