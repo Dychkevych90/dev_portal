@@ -5,14 +5,14 @@ const CustomCover = styled.div`
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
   padding: 10px;
-  height: 150px;
+  height: fit-content;
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
   
   .pill {
-    font-size: 10px;
+    font-size: 12px;
     background-color: goldenrod;
     border-radius: 10px;
     padding: 2px 5px;
@@ -21,13 +21,21 @@ const CustomCover = styled.div`
   }
   
   .title {
-    
+    margin-bottom: 10px;
+    font-weight: 600;
+    font-size: 20px;
+    color: #fff;
+    letter-spacing: 1px;
   }
   
   .icons_block {
     .icon {
       width: 90px;
       height: 90px;
+    }
+    .css {
+      width: 105px;
+      height: 105px;
     }
   }
 `;

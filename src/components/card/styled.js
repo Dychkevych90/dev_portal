@@ -13,7 +13,7 @@ const CardWrapper = styled.div`
   }
   
   .content {
-    padding: 10px;
+    padding: 0 10px 10px;
     width: 100%;
     position: relative;
     
