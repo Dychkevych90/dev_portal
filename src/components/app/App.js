@@ -31,7 +31,7 @@ const App = () => {
   // eslint-disable-next-line new-cap
   const ReactPageWithPreloader = PageWithPreloader( ReactPage, isMenuOpen );
   // eslint-disable-next-line new-cap
-  const SingleArticlePageeWithPreloader = PageWithPreloader( SingleArticlePage, isMenuOpen );
+  const SingleArticlePageWithPreloader = PageWithPreloader( SingleArticlePage, isMenuOpen );
 
   const toggleTheme = ( ) => {
     setThemeMode( ( prevMode ) => ( prevMode === 'light' ? 'dark' : 'light' ) );
@@ -53,13 +53,10 @@ const App = () => {
 
         <Routes>
           <Route exact path='/' element={ <HomePageWithPreloader /> }/>
-          {/* eslint-disable-next-line max-len */}
           <Route exact path='/html-and-css' element={ <HtmlCssPageWithPreloader/> }/>
-          {/* eslint-disable-next-line max-len */}
           <Route exact path='/javascript' element={ <JSPageWithPreloader/> }/>
           <Route exact path='/react' element={ <ReactPageWithPreloader/> }/>
-          {/* eslint-disable-next-line max-len */}
-          <Route exact path='/article/:category/:id' element={ <SingleArticlePageeWithPreloader/> }/>
+          <Route exact path='/article/:category/:id' element={ <SingleArticlePageWithPreloader/> }/>
         </Routes>
 
         <Particles
@@ -122,9 +119,8 @@ const App = () => {
         } }/>
 
 
-        {/* TODO: 1. logo ? */}
-        {/* TODO: 2. preloader */}
-        {/* TODO: 4. particles ? */}
+        {/* TODO: 4. create telegram ? */}
+        {/* TODO: 2. add searching */}
         {/* TODO: 6. add tags in each card ? */}
       </ThemeProvider>
     </>
