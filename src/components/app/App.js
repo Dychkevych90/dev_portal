@@ -120,8 +120,10 @@ const App = () => {
 
 
         {/* TODO: 4. create telegram ? */}
-        {/* TODO: 2. add searching */}
+        {/* TODO: 4. create insta ? */}
+        {/* TODO: 2. add searching in main page and each category page */}
         {/* TODO: 6. add tags in each card ? */}
+        {/* TODO: 4. need to add in sidebar section with other category ?! */}
       </ThemeProvider>
     </>
   );
