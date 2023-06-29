@@ -8,7 +8,7 @@ import JScover from '../modals/createArticle/covers/JScover';
 
 const Card = ( { data } ) => {
   return (
-    <CardWrapper id={ data.id }>
+    <CardWrapper id={ data.id } className='item'>
       {
         data.cover === 'No'
           ? <JScover data={ data }/>

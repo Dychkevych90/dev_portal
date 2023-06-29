@@ -6,7 +6,6 @@ import testArticle from './../../data.json';
 import Card from '../../components/card/card';
 
 const JavaScript = ( { isMenuOpen } ) => {
-  console.log( 'articlesData', testArticle );
   return (
     <JavascriptWrapper isMenuOpen={ isMenuOpen }>
       <div className="container" style={ { paddingLeft: '0' } }>

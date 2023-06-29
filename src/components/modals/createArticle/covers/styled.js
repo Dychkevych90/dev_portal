@@ -34,8 +34,8 @@ const CustomCover = styled.div`
       height: 90px;
     }
     .css {
-      width: 105px;
-      height: 105px;
+      //width: 105px;
+      //height: 105px;
     }
   }
 `;

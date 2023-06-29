@@ -227,6 +227,7 @@ const ArticleCreator = () => {
         return <ImageComponent onChange={ handleImageChange } add={ ( event ) => handleSectionsImageUpload( index ) }/>;
 
       case 'link':
+        // eslint-disable-next-line max-len
         return <LinkComponent onChange={ handleImageChange } add={ ( event ) => handleSectionsImageUpload( index ) } />;
 
       default:
