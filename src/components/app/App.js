@@ -124,7 +124,6 @@ const App = () => {
         {/* TODO: 2. add searching in main page and each category page */}
         {/* TODO: 6. add tags in each card ? */}
         {/* TODO: 4. need to add in sidebar section with other category ?! */}
-        {/* TODO: 4. add possibility add link in article creator ?  */}
       </ThemeProvider>
     </>
   );

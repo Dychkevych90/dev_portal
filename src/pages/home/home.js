@@ -15,9 +15,21 @@ const Home = ( { isMenuOpen } ) => {
               alignItems: 'center',
               justifyContent: 'center',
             } }>
-ABOUT US & SEARCH...
+              ABOUT US & SEARCH...
             </div>
           </div>
+
+          <div className="column-12">
+            {/* eslint-disable-next-line max-len */}
+            <div className='search_block' style={ { background: 'rgb(62 62 62 / 100%)' } }>
+              <input
+                type="text"
+                placeholder='SEARCH...'
+                name='search'
+              />
+            </div>
+          </div>
+
           <div className="column-8">
             {/* eslint-disable-next-line max-len */}
             <div style={ {
