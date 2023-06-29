@@ -9,6 +9,7 @@ import CodeComponent from './blocks/codeBlock';
 import TextAreaComponent from './blocks/textareaBlock';
 
 import { ArticleWrapper } from './styled';
+import LinkComponent from './blocks/linkBlock';
 
 
 const ArticleCreator = () => {
@@ -148,7 +149,7 @@ const ArticleCreator = () => {
 
   const handleSectionsImageUpload = ( event, index ) => {
     const file = inputValue;
-    console.log( 'file', file );
+
     const fileName = new Date().getTime() + file.name;
     const storage = getStorage( app );
     const storageRef = ref( storage, fileName );
@@ -224,6 +225,9 @@ const ArticleCreator = () => {
       case 'file':
         // eslint-disable-next-line max-len
         return <ImageComponent onChange={ handleImageChange } add={ ( event ) => handleSectionsImageUpload( index ) }/>;
+
+      case 'link':
+        return <LinkComponent onChange={ handleImageChange } add={ ( event ) => handleSectionsImageUpload( index ) } />;
 
       default:
         return null;
@@ -311,6 +315,13 @@ const ArticleCreator = () => {
                       onClick={ () => addFields( 'file', index ) }
                     >
                         add image
+                    </button>
+
+                    <button
+                      type='button'
+                      onClick={ () => addFields( 'link', index ) }
+                    >
+                      add link
                     </button>
                   </div>
 
