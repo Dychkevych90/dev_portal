@@ -1,32 +1,60 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
+
+import Card from '../../components/card/card';
 
 import { HomeWrapper } from './styled.js';
+
+import SearchIcon from '@mui/icons-material/Search';
 import testArticle from '../../data.json';
-import Card from '../../components/card/card';
+
 const Home = ( { isMenuOpen } ) => {
+  const [ searchExpanded, setSearchExpanded ] = useState( false );
+
+  const inputRef = useRef( null );
+  const handleSearchIconClick = () => {
+    setSearchExpanded( ( prevExpanded ) => !prevExpanded );
+    if ( !searchExpanded ) {
+      inputRef.current.focus();
+    }
+  };
+
   return (
     <HomeWrapper isMenuOpen={ isMenuOpen }>
       <div className='container'>
         <div className="row">
           <div className="column-12">
-            {/* eslint-disable-next-line max-len */}
             <div className='about_us'>
-              ABOUT US
+              <div className="title">ABOUT US</div>
+              <div className="text">
+                {/* eslint-disable-next-line max-len */}
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad debitis doloribus error, eum exercitationem facilis itaque mollitia necessitatibus perspiciatis repellendus ut voluptatem voluptates! Deserunt earum laboriosam molestias, natus quasi ullam.
+                {/* eslint-disable-next-line max-len */}
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur dolores officiis quod sequi voluptatibus. Assumenda est facere nihil non rerum sapiente tenetur, unde ut! Alias dolorum eaque nihil praesentium voluptatibus!
+              </div>
             </div>
           </div>
 
           <div className="column-12">
-            <input
-              type="text"
-              placeholder='SEARCH...'
-              name='search'
-              className='search'
-              autoComplete='off'
-            />
+            <div className={ `search_block ${searchExpanded ? 'expanded' : ''}` }>
+              <button
+                onClick={ handleSearchIconClick }
+                className={ `search-icon ${searchExpanded ? 'expanded' : ''}` }
+              >
+                <SearchIcon className='icon' />
+              </button>
+
+              <input
+                type="text"
+                placeholder='SEARCH...'
+                name='search'
+                className='search-input'
+                autoComplete='off'
+                ref={ inputRef }
+              />
+            </div>
           </div>
         </div>
       </div>
-
 
       <div className='container'>
         <div className="row">
@@ -39,7 +67,9 @@ const Home = ( { isMenuOpen } ) => {
                 <div className="column-8">
                   <div className='post_block'>
                     <div className="post_block--title">Нещодавні публікації</div>
+
                     <div className="border" />
+
                     <div className="post_block--list">
                       {
                         testArticle.map( ( item ) => {
@@ -49,9 +79,11 @@ const Home = ( { isMenuOpen } ) => {
                         } )
                       }
                     </div>
+
                     <button className='load_more--btn'>Завантижити ще</button>
                   </div>
                 </div>
+
                 <div className="column-4">
                   <div className="column-12">
                     <div style={ {

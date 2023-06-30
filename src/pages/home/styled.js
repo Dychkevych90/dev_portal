@@ -6,9 +6,9 @@ const HomeWrapper = styled.div`
   margin-top: 50px;
   
   .post_block,
-  .search,
+  .search_block,
   .about_us {
-    background: rgba(62,62,62,.7);
+    background: rgba(62,62,62);
     border-radius: 10px;
     padding: 20px;
   }
@@ -20,14 +20,62 @@ const HomeWrapper = styled.div`
     text-align: center;
   }
   
-  .search {
+  .search_block {
     padding: 10px 20px;
     border-radius: 10px;
-    width: 100%;
+    width: 80px;
     height: 80px;
-    border: none;
-    outline: none;
-    color: #fff;
+    display: flex;
+    position: relative;
+    transition: width .5s ease;
+
+    .search-input {
+      width: 0;
+      padding: 8px;
+      padding-left: 50px;
+      border: none;
+      background-color: transparent;
+      border-radius: 4px;
+      transition: width .5s ease;
+      overflow: hidden;
+      z-index: 0;
+      outline: none;
+    }
+
+    .search-icon {
+      padding: 8px;
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+      position: absolute;
+      left: 40px;
+      transform: translate(-50%, -50%);
+      top: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
+      width: 40px;
+      height: 40px;
+      
+      svg {
+        width: 100%;
+        height: 100%;
+      }
+    }
+
+    &.expanded .search-input {
+      width: 250px;
+    }
+
+    &.expanded .search-icon {
+      left: 20px;
+      transform: translateY(-50%);
+    }
+
+    &.expanded {
+      width: 300px;
+    }
   }
   
   .post_block {
@@ -37,6 +85,7 @@ const HomeWrapper = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
+    padding: 0;
     
     &--title {
       font-size: 22px;
