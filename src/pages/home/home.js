@@ -138,17 +138,17 @@ Blog
           </div>
 
           <div className="column-4">
-            <div style={ {
+            <div className='social_block' style={ {
               background: 'rgb(62 62 62 / 100%)',
               height: '300px',
               margin: '10px',
               borderRadius: '5px',
               padding: '50px',
             } }>
-              <div>Follow Us:</div>
-              <div>telegram</div>
-              <div>Instagram</div>
-              <div>YouTube</div>
+              <div className='social_block--title'>Follow Us:</div>
+              <div className='social_block--item'>Telegram</div>
+              <div className='social_block--item'>Instagram</div>
+              <div className='social_block--item'>YouTube</div>
             </div>
           </div>
 
