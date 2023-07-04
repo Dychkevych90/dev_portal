@@ -99,22 +99,22 @@ const Home = ( { isMenuOpen } ) => {
                   </div>
 
                   <div className="column-12">
-                    <div style={ {
-                      background: 'rgb(62 62 62 / 100%)',
-                      height: '300px', borderRadius: '10px',
-                      padding: '50px',
-                    } }>
-                      <div>Розділи:</div>
-                      <ul>
-                        <li>Html & Css - 20</li>
-                        <li>JavaScript - 10</li>
-                        <li>React - 5</li>
-                        <li>Git & Github - 2</li>
-                        <li>Node - 2</li>
-                        <li>Sliders</li>
-                        <li>Tabs</li>
-                        <li>Hovers</li>
-                        <li>Pagination</li>
+                    <div className='categories'>
+                      <div className='categories--title'>Категорії</div>
+                      <div className="border" />
+                      <ul className='categories_list'>
+                        <li className='categories_list--item'>
+                          <a>Html & Css</a>
+                          <div className='count'>20</div>
+                        </li>
+                        <li className='categories_list--item'>
+                          <a>JavaScript</a>
+                          <div className='count'>10</div>
+                        </li>
+                        <li className='categories_list--item'>
+                          <a>Git</a>
+                          <div className='count'>2</div>
+                        </li>
                       </ul>
                     </div>
                   </div>

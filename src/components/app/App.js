@@ -125,6 +125,7 @@ const App = () => {
         {/* TODO: 6. add tags in each card ? */}
         {/* TODO: 6. create category page ? */}
         {/* TODO: 4. need to add in sidebar section with other category ?! */}
+        {/* TODO: 6. create admin page ? */}
       </ThemeProvider>
     </>
   );

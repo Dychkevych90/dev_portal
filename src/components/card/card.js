@@ -18,7 +18,7 @@ const Card = ( { data } ) => {
       <div className="content">
         <div className="date">{data.created_date}</div>
         {
-          data.cover === 'No' && <div className="title">{data.title}</div>
+          data.cover === 'Yes' && <div className="title">{data.title}</div>
         }
         {/* eslint-disable-next-line max-len */}
         <Link to={ `/article/${data.category}/${data.id}` } className='read_more'>Читати більше...</Link>

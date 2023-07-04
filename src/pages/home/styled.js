@@ -7,7 +7,8 @@ const HomeWrapper = styled.div`
   
   .post_block,
   .search_block,
-  .about_us {
+  .about_us,
+  .categories {
     background: rgba(62,62,62);
     border-radius: 10px;
     padding: 20px;
@@ -123,6 +124,29 @@ const HomeWrapper = styled.div`
       border-radius: 10px;
       font-size: 19px;
       color: #fff;
+    }
+  }
+  
+  .categories {
+
+    &--title {
+      font-size: 22px;
+    }
+
+    .border {
+      width: 60%;
+      background: goldenrod;
+      height: 3px;
+      margin: 20px 0 25px;
+    }
+    
+    &_list {
+      
+      .categories_list--item {
+        list-style-type: none;
+        display: flex;
+        align-items: center;
+      }
     }
   }
 `;
