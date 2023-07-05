@@ -8,7 +8,8 @@ const HomeWrapper = styled.div`
   .post_block,
   .search_block,
   .about_us,
-  .categories {
+  .categories,
+  .social_block {
     background: rgba(62,62,62);
     border-radius: 10px;
     padding: 20px;
@@ -146,6 +147,44 @@ const HomeWrapper = styled.div`
         list-style-type: none;
         display: flex;
         align-items: center;
+        margin-bottom: 10px;
+        
+        a {
+          font-size: 16px;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+  
+  .social_block {
+    
+    &--title {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+    
+    .social_list {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      justify-content: space-between;
+      
+      &--item {
+        width: 80px;
+        height: 80px;
+        background-color: red;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        
+        .label {
+          position: absolute;
+          top: 0;
+          right: 0;
+          font-size: 12px;
+        }
       }
     }
   }

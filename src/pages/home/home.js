@@ -5,6 +5,10 @@ import Card from '../../components/card/card';
 import { HomeWrapper } from './styled.js';
 
 import SearchIcon from '@mui/icons-material/Search';
+import InstagramIcon from '@mui/icons-material/Instagram';
+import TelegramIcon from '@mui/icons-material/Telegram';
+import YouTubeIcon from '@mui/icons-material/YouTube';
+
 import testArticle from '../../data.json';
 
 const Home = ( { isMenuOpen } ) => {
@@ -105,15 +109,15 @@ const Home = ( { isMenuOpen } ) => {
                       <ul className='categories_list'>
                         <li className='categories_list--item'>
                           <a>Html & Css</a>
-                          <div className='count'>20</div>
+                          <div className='count'> - 20</div>
                         </li>
                         <li className='categories_list--item'>
                           <a>JavaScript</a>
-                          <div className='count'>10</div>
+                          <div className='count'> - 10</div>
                         </li>
                         <li className='categories_list--item'>
                           <a>Git</a>
-                          <div className='count'>2</div>
+                          <div className='count'> - 2</div>
                         </li>
                       </ul>
                     </div>
@@ -138,17 +142,16 @@ Blog
           </div>
 
           <div className="column-4">
-            <div className='social_block' style={ {
-              background: 'rgb(62 62 62 / 100%)',
-              height: '300px',
-              margin: '10px',
-              borderRadius: '5px',
-              padding: '50px',
-            } }>
+            <div className='social_block'>
               <div className='social_block--title'>Follow Us:</div>
-              <div className='social_block--item'>Telegram</div>
-              <div className='social_block--item'>Instagram</div>
-              <div className='social_block--item'>YouTube</div>
+              <div className='social_list'>
+                <div className='social_list--item'>
+                  <span className='label'>Soon!</span>
+Telegram
+                </div>
+                <div className='social_list--item'>Instagram</div>
+                <div className='social_list--item'>YouTube</div>
+              </div>
             </div>
           </div>
 
