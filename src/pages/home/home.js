@@ -8,6 +8,8 @@ import SearchIcon from '@mui/icons-material/Search';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TelegramIcon from '@mui/icons-material/Telegram';
 import YouTubeIcon from '@mui/icons-material/YouTube';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import EmailIcon from '@mui/icons-material/Email';
 
 import testArticle from '../../data.json';
 
@@ -69,12 +71,12 @@ const Home = ( { isMenuOpen } ) => {
             >
               <div className="row">
                 <div className="column-8">
-                  <div className='post_block'>
+                  <div className='post_block articles'>
                     <div className="post_block--title">Нещодавні публікації</div>
 
                     <div className="border" />
 
-                    <div className="post_block--list">
+                    <div className="post_block--list articles--list">
                       {
                         testArticle.map( ( item ) => {
                           return (
@@ -97,6 +99,7 @@ const Home = ( { isMenuOpen } ) => {
                       alignItems: 'center',
                       justifyContent: 'center',
                       marginBottom: '20px',
+                      opacity: '0.8',
                     } }>
                       Help us
                     </div>
@@ -129,39 +132,63 @@ const Home = ( { isMenuOpen } ) => {
 
 
           <div className="column-8">
-            {/* eslint-disable-next-line max-len */}
-            <div style={ {
-              background: 'rgb(62 62 62 / 100%)',
-              height: '300px', margin: '10px', borderRadius: '5px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            } }>
-Blog
+            <div className='blog_section articles'>
+              <div className="blog_section--title">Статті</div>
+
+              <div className="border" />
+
+              <div className="blog_section--list articles--list">
+                {
+                  testArticle.map( ( item ) => {
+                    return (
+                      <Card key={ item.id } data={ item }/>
+                    );
+                  } )
+                }
+              </div>
+
+              <button className='load_more--btn'>Завантижити ще</button>
             </div>
           </div>
 
           <div className="column-4">
             <div className='social_block'>
               <div className='social_block--title'>Follow Us:</div>
+
+              <div className="border" />
               <div className='social_list'>
-                <div className='social_list--item'>
-                  <span className='label'>Soon!</span>
-Telegram
-                </div>
-                <div className='social_list--item'>Instagram</div>
-                <div className='social_list--item'>YouTube</div>
+                <a href='#' target='_blank' className='social_list--item'>
+                  <TelegramIcon/>
+                </a>
+
+                <a href='#' target='_blank' className='social_list--item'>
+                  <InstagramIcon/>
+                </a>
+
+                <a href='#' target='_blank' className='social_list--item'>
+                  <YouTubeIcon/>
+                </a>
               </div>
             </div>
           </div>
 
           <div className="column-12">
-            <div style={ {
-              background: 'rgb(62 62 62 / 100%)',
-              height: '200px', margin: '10px', borderRadius: '5px',
-              padding: '50px',
-            } }>
-             Footer
+            <div className='footer'>
+              <div className="left">
+                <a href="#">Code Geeks</a>
+                <span>Всі права захищені© 2023</span>
+              </div>
+              <div className="right social_icons">
+                <a target='_blank' href="mailto:dychkevych.kolya@gmail.com" rel="noreferrer">
+                  <EmailIcon/>
+                </a>
+                <a target='_blank' href="https://www.linkedin.com/in/dychkevych" rel="noreferrer">
+                  <LinkedInIcon/>
+                </a>
+                <a target='_blank' href="https://t.me/Dychkevych" rel="noreferrer">
+                  <TelegramIcon/>
+                </a>
+              </div>
             </div>
           </div>
         </div>
