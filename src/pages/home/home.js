@@ -12,6 +12,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import EmailIcon from '@mui/icons-material/Email';
 
 import testArticle from '../../data.json';
+import { NavLink } from 'react-router-dom';
 
 const Home = ( { isMenuOpen } ) => {
   const [ searchExpanded, setSearchExpanded ] = useState( false );
@@ -108,18 +109,25 @@ const Home = ( { isMenuOpen } ) => {
                   <div className="column-12">
                     <div className='categories'>
                       <div className='categories--title'>Категорії</div>
+
                       <div className="border" />
+
                       <ul className='categories_list'>
                         <li className='categories_list--item'>
-                          <a>Html & Css</a>
+                          <NavLink to='/html-and-css'>Html & Css </NavLink>
+
                           <div className='count'> - 20</div>
                         </li>
+
                         <li className='categories_list--item'>
                           <a>JavaScript</a>
+
                           <div className='count'> - 10</div>
                         </li>
+
                         <li className='categories_list--item'>
                           <a>Git</a>
+
                           <div className='count'> - 2</div>
                         </li>
                       </ul>
@@ -129,7 +137,6 @@ const Home = ( { isMenuOpen } ) => {
               </div>
             </div>
           </div>
-
 
           <div className="column-8">
             <div className='blog_section articles'>
@@ -161,11 +168,11 @@ const Home = ( { isMenuOpen } ) => {
                   <TelegramIcon/>
                 </a>
 
-                <a href='#' target='_blank' className='social_list--item'>
+                <a href='#' target='_blank' className='social_list--item unactive'>
                   <InstagramIcon/>
                 </a>
 
-                <a href='#' target='_blank' className='social_list--item'>
+                <a href='#' target='_blank' className='social_list--item unactive'>
                   <YouTubeIcon/>
                 </a>
               </div>
@@ -175,17 +182,31 @@ const Home = ( { isMenuOpen } ) => {
           <div className="column-12">
             <div className='footer'>
               <div className="left">
-                <a href="#">Code Geeks</a>
-                <span>Всі права захищені© 2023</span>
+                Всі права захищені© 2023
               </div>
               <div className="right social_icons">
-                <a target='_blank' href="mailto:dychkevych.kolya@gmail.com" rel="noreferrer">
+                <a
+                  target='_blank'
+                  href="mailto:dychkevych.kolya@gmail.com"
+                  rel="noreferrer"
+                  className='link'
+                >
                   <EmailIcon/>
                 </a>
-                <a target='_blank' href="https://www.linkedin.com/in/dychkevych" rel="noreferrer">
+                <a
+                  target='_blank'
+                  href="https://www.linkedin.com/in/dychkevych"
+                  rel="noreferrer"
+                  className='link unactive'
+                >
                   <LinkedInIcon/>
                 </a>
-                <a target='_blank' href="https://t.me/Dychkevych" rel="noreferrer">
+                <a
+                  target='_blank'
+                  href="https://t.me/Dychkevych"
+                  rel="noreferrer"
+                  className='link'
+                >
                   <TelegramIcon/>
                 </a>
               </div>

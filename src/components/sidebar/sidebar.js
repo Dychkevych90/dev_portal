@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import SwitchButton from '../buttons/switch';
+import ArticleCreator from '../modals/createArticle/articleCreator';
 
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import CodeIcon from '@mui/icons-material/Code';
@@ -9,13 +10,11 @@ import JavascriptIcon from '@mui/icons-material/Javascript';
 import HomeIcon from '@mui/icons-material/Home';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import ArticleIcon from '@mui/icons-material/NoteAlt';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import logo from '../../assets/icons/logo.png';
 
 import { SideBarWrapper } from './styled.js';
-import ArticleCreator from '../modals/createArticle/articleCreator';
 
 const Sidebar = ( { setIsMenuOpen, toggleTheme, themeMode } ) => {
   const [ openMenu, setOpenMenu ] = useState( true );
@@ -32,6 +31,7 @@ const Sidebar = ( { setIsMenuOpen, toggleTheme, themeMode } ) => {
         <div className="top">
           <div className="logo">
             <img src={ logo } alt="logo"/>
+
             <div className="text">CodeGeeks</div>
           </div>
           <ul className="nav">
@@ -40,20 +40,22 @@ const Sidebar = ( { setIsMenuOpen, toggleTheme, themeMode } ) => {
                 <HomeIcon className='nav_icon'/>
                 <div className='text'>Головна</div>
               </NavLink>
-              {/* { !openMenu && <HoverBlock className='hover' >Головна</HoverBlock> } */}
             </li>
+
             <li className="nav_item">
               <NavLink to='/html-and-css' className="link">
                 <CodeIcon className='nav_icon'/>
                 <div className='text'>Html & Css</div>
               </NavLink>
             </li>
+
             <li className="nav_item">
               <NavLink to='/javascript' className="link">
                 <JavascriptIcon className='nav_icon icon-js'/>
                 <div className='text'>JavaScript</div>
               </NavLink>
             </li>
+
             <li className="nav_item">
               <NavLink to='/react' className="link">
                 {/* eslint-disable-next-line max-len */}
@@ -61,25 +63,29 @@ const Sidebar = ( { setIsMenuOpen, toggleTheme, themeMode } ) => {
                 <div className='text'>React</div>
               </NavLink>
             </li>
+
             <li className="nav_item">
-              <a href="#" className="link">
+              <NavLink to="/git&github" className="link">
                 {/* eslint-disable-next-line max-len */}
                 <svg className='nav_icon' fill="currentColor" viewBox="0 0 16 16" height="1em" width="1em"><path d="M15.698 7.287L8.712.302a1.03 1.03 0 00-1.457 0l-1.45 1.45 1.84 1.84a1.223 1.223 0 011.55 1.56l1.773 1.774a1.224 1.224 0 011.267 2.025 1.226 1.226 0 01-2.002-1.334L8.58 5.963v4.353a1.226 1.226 0 11-1.008-.036V5.887a1.226 1.226 0 01-.666-1.608L5.093 2.465l-4.79 4.79a1.03 1.03 0 000 1.457l6.986 6.986a1.03 1.03 0 001.457 0l6.953-6.953a1.031 1.031 0 000-1.457"></path></svg>
                 <div className='text'>Git & Github</div>
-              </a>
+              </NavLink>
             </li>
+
             <li className="nav_item">
               <a href="#" className="link">
                 <ArticleIcon className='nav_icon'/>
                 <div className='text'>Блог</div>
               </a>
             </li>
+
             <li className="nav_item">
               <a href="#" className="link">
                 <MailOutlineIcon className='nav_icon'/>
                 <div className='text'>Контакти</div>
               </a>
             </li>
+
           </ul>
         </div>
 
@@ -99,17 +105,18 @@ const Sidebar = ( { setIsMenuOpen, toggleTheme, themeMode } ) => {
           >
             add article
           </button>
-          <button className='logout_btn'>
-            <AccountCircleIcon className='icon'/>
-            <span className="text">Мій аккаунт</span>
-          </button>
+
+          {/* <button className='logout_btn'> */}
+          {/*   <AccountCircleIcon className='icon'/> */}
+          {/*   <span className="text">Мій аккаунт</span> */}
+          {/* </button> */}
 
           <div className='switch'>
             <button onClick={ toggleTheme } className='switchBtn'>
               {
-                themeMode === 'light' ?
-                  <DarkModeIcon className='icon'/> :
-                  <LightModeIcon className='icon' />
+                themeMode === 'light'
+                  ? <DarkModeIcon className='icon'/>
+                  : <LightModeIcon className='icon' />
               }
             </button>
 

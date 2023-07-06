@@ -17,6 +17,7 @@ import GlobalStyles from '../../mainStyles';
 import { lightTheme, darkTheme } from '../../mainStyles';
 
 import test from '../../assets/images/test123.png';
+import Git from '../../pages/git/git';
 
 const App = () => {
   const [ isMenuOpen, setIsMenuOpen ] = useState( true );
@@ -32,6 +33,8 @@ const App = () => {
   const ReactPageWithPreloader = PageWithPreloader( ReactPage, isMenuOpen );
   // eslint-disable-next-line new-cap
   const SingleArticlePageWithPreloader = PageWithPreloader( SingleArticlePage, isMenuOpen );
+  // eslint-disable-next-line new-cap
+  const GitPageWithPreloader = PageWithPreloader( Git, isMenuOpen );
 
   const toggleTheme = ( ) => {
     setThemeMode( ( prevMode ) => ( prevMode === 'light' ? 'dark' : 'light' ) );
@@ -56,6 +59,7 @@ const App = () => {
           <Route exact path='/html-and-css' element={ <HtmlCssPageWithPreloader/> }/>
           <Route exact path='/javascript' element={ <JSPageWithPreloader/> }/>
           <Route exact path='/react' element={ <ReactPageWithPreloader/> }/>
+          <Route exact path='/git&github' element={ <GitPageWithPreloader/> }/>
           <Route exact path='/article/:category/:id' element={ <SingleArticlePageWithPreloader/> }/>
         </Routes>
 
@@ -119,14 +123,13 @@ const App = () => {
         } }/>
 
 
-        {/* TODO: 4. create telegram ? */}
-        {/* TODO: 4. create instagram ? */}
-        {/* TODO: 2. add searching in main page and each category page */}
-        {/* TODO: 6. add tags in each card ? */}
+        {/* TODO: 1. create telegram ? */}
+        {/* TODO: 2 create instagram ? */}
+        {/* TODO: 3. create youtube ? */}
+        {/* TODO: 4. add searching in main page and each category page */}
         {/* TODO: 6. create category page ? */}
-        {/* TODO: 6. add accordion in sidebar */}
-        {/* TODO: 4. need to add in sidebar section with other category ?! */}
-        {/* TODO: 6. create admin page ? */}
+        {/* TODO: 8. need to add in sidebar section with other category ?! */}
+        {/* TODO: 9. create admin page ? */}
       </ThemeProvider>
     </>
   );

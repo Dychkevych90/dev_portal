@@ -128,7 +128,6 @@ const HomeWrapper = styled.div`
     }
     
     &_list {
-      
       .categories_list--item {
         list-style-type: none;
         display: flex;
@@ -138,6 +137,7 @@ const HomeWrapper = styled.div`
         a {
           font-size: 16px;
           font-weight: 500;
+          text-decoration: none;
         }
       }
     }
@@ -189,6 +189,10 @@ const HomeWrapper = styled.div`
         &:hover svg path{
           fill: goldenrod;
         }
+
+        &.unactive {
+          pointer-events: none;
+        }
         
       }
     }
@@ -210,6 +214,33 @@ const HomeWrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    
+    
+    .social_icons {
+      display: flex;
+      align-items: center;
+      
+      .unactive {
+        pointer-events: none;
+      }
+      
+      .link {
+        width: 30px;
+        height: 30px;
+        display: block;
+        position: relative;
+        margin-right: 15px;
+        
+        svg {
+          width: 100%;
+          height: 100%;
+        }
+      }
+      
+      & .link:last-child {
+        margin-right: 0;
+      }
+    }
   }
 
   .load_more--btn {
