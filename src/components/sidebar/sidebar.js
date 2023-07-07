@@ -73,17 +73,17 @@ const Sidebar = ( { setIsMenuOpen, toggleTheme, themeMode } ) => {
             </li>
 
             <li className="nav_item">
-              <a href="#" className="link">
+              <NavLink to="/blog" className="link">
                 <ArticleIcon className='nav_icon'/>
                 <div className='text'>Блог</div>
-              </a>
+              </NavLink>
             </li>
 
             <li className="nav_item">
-              <a href="#" className="link">
+              <NavLink to="/about" className="link">
                 <MailOutlineIcon className='nav_icon'/>
-                <div className='text'>Контакти</div>
-              </a>
+                <div className='text'>Про Нас</div>
+              </NavLink>
             </li>
 
           </ul>

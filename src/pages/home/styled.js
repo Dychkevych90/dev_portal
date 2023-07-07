@@ -133,6 +133,7 @@ const HomeWrapper = styled.div`
         display: flex;
         align-items: center;
         margin-bottom: 10px;
+        justify-content: space-between;
         
         a {
           font-size: 16px;

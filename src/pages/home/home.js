@@ -116,19 +116,19 @@ const Home = ( { isMenuOpen } ) => {
                         <li className='categories_list--item'>
                           <NavLink to='/html-and-css'>Html & Css </NavLink>
 
-                          <div className='count'> - 20</div>
+                          <div className='count'>20</div>
                         </li>
 
                         <li className='categories_list--item'>
                           <a>JavaScript</a>
 
-                          <div className='count'> - 10</div>
+                          <div className='count'>10</div>
                         </li>
 
                         <li className='categories_list--item'>
                           <a>Git</a>
 
-                          <div className='count'> - 2</div>
+                          <div className='count'>2</div>
                         </li>
                       </ul>
                     </div>

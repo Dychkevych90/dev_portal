@@ -1,7 +1,7 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import { Routes, Route } from 'react-router';
-import Particles from 'react-tsparticles';
-import { loadFull } from 'tsparticles';
+// import Particles from 'react-tsparticles';
+// import { loadFull } from 'tsparticles';
 
 import { ThemeProvider } from 'styled-components';
 
@@ -12,12 +12,14 @@ import SingleArticlePage from '../../pages/singleArticlePage/singleArticlePage';
 import JavaScript from '../../pages/javaScript/javaScript';
 import ReactPage from '../../pages/react/react';
 import PageWithPreloader from '../PageWithPreloader/pageWithPreloader';
+import Git from '../../pages/git/git';
+import Blog from '../../pages/blog/blog';
 
 import GlobalStyles from '../../mainStyles';
 import { lightTheme, darkTheme } from '../../mainStyles';
 
 import test from '../../assets/images/test123.png';
-import Git from '../../pages/git/git';
+import About from '../../pages/about/about';
 
 const App = () => {
   const [ isMenuOpen, setIsMenuOpen ] = useState( true );
@@ -35,6 +37,10 @@ const App = () => {
   const SingleArticlePageWithPreloader = PageWithPreloader( SingleArticlePage, isMenuOpen );
   // eslint-disable-next-line new-cap
   const GitPageWithPreloader = PageWithPreloader( Git, isMenuOpen );
+  // eslint-disable-next-line new-cap
+  const BlogPageWithPreloader = PageWithPreloader( Blog, isMenuOpen );
+  // eslint-disable-next-line new-cap
+  const AboutPageWithPreloader = PageWithPreloader( About, isMenuOpen );
 
   const toggleTheme = ( ) => {
     setThemeMode( ( prevMode ) => ( prevMode === 'light' ? 'dark' : 'light' ) );
@@ -42,9 +48,9 @@ const App = () => {
 
   const theme = themeMode === 'light' ? lightTheme : darkTheme;
 
-  const particlesInit = useCallback( async ( engine ) => {
-    await loadFull( engine );
-  }, [] );
+  // const particlesInit = useCallback( async ( engine ) => {
+  //   await loadFull( engine );
+  // }, [] );
 
   return (
     <>
@@ -60,55 +66,57 @@ const App = () => {
           <Route exact path='/javascript' element={ <JSPageWithPreloader/> }/>
           <Route exact path='/react' element={ <ReactPageWithPreloader/> }/>
           <Route exact path='/git&github' element={ <GitPageWithPreloader/> }/>
+          <Route exact path='/blog' element={ <BlogPageWithPreloader/> }/>
+          <Route exact path='/about' element={ <AboutPageWithPreloader/> }/>
           <Route exact path='/article/:category/:id' element={ <SingleArticlePageWithPreloader/> }/>
         </Routes>
 
-        <Particles
-          id="tsparticles"
-          init={ particlesInit }
-          // loaded={ particlesLoaded }
-          options={ {
-            fpsLimit: 120,
-            particles: {
-              color: {
-                value: '#ccc',
-              },
-              links: {
-                color: '#fff',
-                distance: 200,
-                enable: true,
-                opacity: 0.3,
-                width: 0.5,
-              },
-              move: {
-                direction: 'none',
-                enable: true,
-                outModes: {
-                  default: 'bounce',
-                },
-                random: false,
-                speed: 1,
-                straight: false,
-              },
-              number: {
-                density: {
-                  enable: true,
-                  area: 800,
-                },
-                value: 80,
-              },
-              opacity: {
-                value: 0.2,
-              },
-              shape: {
-                type: 'circle',
-              },
-              size: {
-                value: { min: 1, max: 5 },
-              },
-            },
-          } }
-        />
+        {/* <Particles */}
+        {/*   id="tsparticles" */}
+        {/*   init={ particlesInit } */}
+        {/*   // loaded={ particlesLoaded } */}
+        {/*   options={ { */}
+        {/*     fpsLimit: 120, */}
+        {/*     particles: { */}
+        {/*       color: { */}
+        {/*         value: '#ccc', */}
+        {/*       }, */}
+        {/*       links: { */}
+        {/*         color: '#fff', */}
+        {/*         distance: 200, */}
+        {/*         enable: true, */}
+        {/*         opacity: 0.3, */}
+        {/*         width: 0.5, */}
+        {/*       }, */}
+        {/*       move: { */}
+        {/*         direction: 'none', */}
+        {/*         enable: true, */}
+        {/*         outModes: { */}
+        {/*           default: 'bounce', */}
+        {/*         }, */}
+        {/*         random: false, */}
+        {/*         speed: 1, */}
+        {/*         straight: false, */}
+        {/*       }, */}
+        {/*       number: { */}
+        {/*         density: { */}
+        {/*           enable: true, */}
+        {/*           area: 800, */}
+        {/*         }, */}
+        {/*         value: 80, */}
+        {/*       }, */}
+        {/*       opacity: { */}
+        {/*         value: 0.2, */}
+        {/*       }, */}
+        {/*       shape: { */}
+        {/*         type: 'circle', */}
+        {/*       }, */}
+        {/*       size: { */}
+        {/*         value: { min: 1, max: 5 }, */}
+        {/*       }, */}
+        {/*     }, */}
+        {/*   } } */}
+        {/* /> */}
 
         <img src={ test } alt="" style={ {
           objectFit: 'cover',
