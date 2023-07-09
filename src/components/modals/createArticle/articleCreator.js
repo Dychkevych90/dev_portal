@@ -34,6 +34,7 @@ const ArticleCreator = () => {
     content: [],
     hasExample: 'No',
     video: '',
+    github: '',
   } );
 
   const changeHandler = ( event ) => {
@@ -81,6 +82,7 @@ const ArticleCreator = () => {
       cover: form.cover,
       classes: form.classes,
       category: form.category,
+      github: form.github,
       pills: pills,
       hasExample: form.hasExample,
       content: sections,
@@ -228,7 +230,7 @@ const ArticleCreator = () => {
 
       case 'link':
         // eslint-disable-next-line max-len
-        return <LinkComponent onChange={ handleImageChange } add={ ( event ) => handleSectionsImageUpload( index ) } />;
+        return <LinkComponent onChange={ handleInputChange } add={ ( event ) => handleAddValue( index ) } />;
 
       default:
         return null;
@@ -278,6 +280,13 @@ const ArticleCreator = () => {
           <option value="Yes">Yes</option>
           <option value="No">No</option>
         </select>
+
+        <input
+          placeholder="github link"
+          name="github"
+          onChange={ changeHandler }
+          required
+        />
 
         <button
           className='create_section'

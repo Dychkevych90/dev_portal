@@ -20,6 +20,7 @@ import { lightTheme, darkTheme } from '../../mainStyles';
 
 import test from '../../assets/images/test123.png';
 import About from '../../pages/about/about';
+import AdminPage from '../../pages/admin/admin';
 
 const App = () => {
   const [ isMenuOpen, setIsMenuOpen ] = useState( true );
@@ -68,6 +69,7 @@ const App = () => {
           <Route exact path='/git&github' element={ <GitPageWithPreloader/> }/>
           <Route exact path='/blog' element={ <BlogPageWithPreloader/> }/>
           <Route exact path='/about' element={ <AboutPageWithPreloader/> }/>
+          <Route exact path='/admin' element={ <AdminPage/> }/>
           <Route exact path='/article/:category/:id' element={ <SingleArticlePageWithPreloader/> }/>
         </Routes>
 
@@ -132,7 +134,7 @@ const App = () => {
 
 
         {/* TODO: 1. create telegram ? */}
-        {/* TODO: 2 create instagram ? */}
+        {/* TODO: 2  create instagram ? */}
         {/* TODO: 3. create youtube ? */}
         {/* TODO: 4. add searching in main page and each category page */}
         {/* TODO: 6. create category page ? */}
