@@ -14,13 +14,13 @@ import ReactPage from '../../pages/react/react';
 import PageWithPreloader from '../PageWithPreloader/pageWithPreloader';
 import Git from '../../pages/git/git';
 import Blog from '../../pages/blog/blog';
+import About from '../../pages/about/about';
+import AdminPage from '../../pages/admin/admin';
 
 import GlobalStyles from '../../mainStyles';
 import { lightTheme, darkTheme } from '../../mainStyles';
 
 import test from '../../assets/images/test123.png';
-import About from '../../pages/about/about';
-import AdminPage from '../../pages/admin/admin';
 
 const App = () => {
   const [ isMenuOpen, setIsMenuOpen ] = useState( true );

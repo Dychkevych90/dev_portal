@@ -3,7 +3,6 @@ import React from 'react';
 import { CustomCover } from './styled.js';
 
 const CustomCoverJS = ( { data } ) => {
-  console.log( 'data', data.category );
   const renderIcons = () => {
     switch ( data.category ) {
       case 'JavaScript':
