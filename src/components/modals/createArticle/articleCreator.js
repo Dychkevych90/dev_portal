@@ -85,6 +85,7 @@ const ArticleCreator = () => {
       github: form.github,
       pills: pills,
       hasExample: form.hasExample,
+      video: form.video,
       content: sections,
     };
 
