@@ -140,7 +140,7 @@ const App = () => {
         {/* TODO: 6. create category page ? */}
         {/* TODO: 8. need to add in sidebar section with other category ?! */}
         {/* TODO: 9. create admin page ? */}
-        {/* TODO: 10. connect to BFF */}
+        {/* TODO: 10. connect to BFF ?! */}
       </ThemeProvider>
     </>
   );
