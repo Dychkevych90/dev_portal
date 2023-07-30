@@ -24,6 +24,7 @@ const App = () => {
   const [ isMenuOpen, setIsMenuOpen ] = useState( true );
   const [ themeMode, setThemeMode ] = useState( 'dark' );
 
+
   // eslint-disable-next-line new-cap
   const HomePageWithPreloader = PageWithPreloader( Home, isMenuOpen );
   // eslint-disable-next-line new-cap
