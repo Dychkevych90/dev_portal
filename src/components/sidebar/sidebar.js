@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import SwitchButton from '../buttons/switch';
-import ArticleCreator from '../modals/createArticle/articleCreator';
 
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import CodeIcon from '@mui/icons-material/Code';
@@ -18,7 +17,6 @@ import { SideBarWrapper } from './styled.js';
 
 const Sidebar = ( { setIsMenuOpen, toggleTheme, themeMode } ) => {
   const [ openMenu, setOpenMenu ] = useState( true );
-  const [ isModalOpen, setIsModalOpen ] = useState( false );
 
   const isMenuOpen = () => {
     setIsMenuOpen( !openMenu );
@@ -90,22 +88,6 @@ const Sidebar = ( { setIsMenuOpen, toggleTheme, themeMode } ) => {
         </div>
 
         <div className="bottom">
-          <button
-            style={ {
-              padding: '10px',
-              width: '200px',
-              color: '#000',
-              borderRadius: '10px',
-              height: '50px',
-              position: 'fixed',
-              bottom: '50px',
-              right: '50px',
-            } }
-            onClick={ () => setIsModalOpen( !isModalOpen ) }
-          >
-            add article
-          </button>
-
           {/* <button className='logout_btn'> */}
           {/*   <AccountCircleIcon className='icon'/> */}
           {/*   <span className="text">Мій аккаунт</span> */}
@@ -134,11 +116,6 @@ const Sidebar = ( { setIsMenuOpen, toggleTheme, themeMode } ) => {
           <KeyboardArrowRightIcon/>
         </button>
       </SideBarWrapper>
-      {
-        isModalOpen && (
-          <ArticleCreator/>
-        )
-      }
     </>
   );
 };

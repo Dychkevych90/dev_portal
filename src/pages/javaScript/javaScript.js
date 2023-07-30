@@ -14,6 +14,7 @@ const JavaScript = ( { isMenuOpen } ) => {
             <div className="section_title">JavaScript</div>
           </div>
         </div>
+
         <div className="row">
           {
             testArticle.map( ( item ) => {

@@ -18,7 +18,6 @@ const Home = ( { isMenuOpen } ) => {
   const [ searchExpanded, setSearchExpanded ] = useState( false );
 
   const inputRef = useRef( null );
-
   const handleSearchIconClick = () => {
     setSearchExpanded( ( prevExpanded ) => !prevExpanded );
     if ( !searchExpanded ) {

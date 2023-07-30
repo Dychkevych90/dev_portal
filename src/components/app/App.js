@@ -53,8 +53,11 @@ const App = () => {
       <ThemeProvider theme={ theme }>
         <GlobalStyles />
 
-        {/* eslint-disable-next-line max-len */}
-        <Sidebar setIsMenuOpen={ setIsMenuOpen } toggleTheme={ toggleTheme } themeMode={ themeMode }/>
+        <Sidebar
+          setIsMenuOpen={ setIsMenuOpen }
+          toggleTheme={ toggleTheme }
+          themeMode={ themeMode }
+        />
 
         <Routes>
           <Route exact path='/' element={ <HomePageWithPreloader /> }/>
@@ -64,7 +67,7 @@ const App = () => {
           <Route exact path='/git&github' element={ <GitPageWithPreloader/> }/>
           <Route exact path='/blog' element={ <BlogPageWithPreloader/> }/>
           <Route exact path='/about' element={ <AboutPageWithPreloader/> }/>
-          <Route exact path='/admin' element={ <AdminPage/> }/>
+          <Route exact path='/admin' element={ <AdminPage isMenuOpen={ isMenuOpen }/> }/>
           <Route exact path='/article/:category/:id' element={ <SingleArticlePageWithPreloader/> }/>
         </Routes>
 

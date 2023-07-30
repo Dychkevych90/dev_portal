@@ -1,24 +1,65 @@
-import React from 'react';
+import React, { useState } from 'react';
+
+import { useDispatch } from 'react-redux';
+
+import { useApi } from '../../context/apiContext';
+import { setUser } from '../../redux-store/actions/actions';
+
+import { LoginFormWrapper } from './styled';
 
 const LoginForm = () => {
-  const onSubmit = ( e ) => {
-    const login = e.target.value.login;
-    const password = e.target.value.password;
+  const { loginUser } = useApi();
+  const dispatch = useDispatch();
 
-    if (
-      login === process.env.REACT_APP_ADMIN_LOGIN
-      && password === process.env.REACT_APP_ADMIN_PASSWORD
-    ) {
-      console.log( 'aloha' );
-    }
+  const [ form, setForm ] = useState( {
+    username: '',
+    password: '',
+  } );
+
+  const changeHandler = ( event ) => {
+    setForm( { ...form, [ event.target.name ]: event.target.value } );
+  };
+  const onLogin = async ( e ) => {
+    e.preventDefault();
+    console.log( 'form', form );
+    await loginUser( form )
+        .then( ( res ) => {
+          console.log( 'res', res );
+          dispatch( setUser( res ) );
+        } )
+        .catch( ( err ) => console.error( err ) );
   };
 
   return (
-    <form>
-      <input type="text" name='login'/>
-      <input type="password" name='password'/>
-      <button onClick={ ( e ) => onSubmit( e ) } type='button'>SIGN IN</button>
-    </form>
+    <LoginFormWrapper>
+      <form>
+        <h1 className='title'>Вхід в адмінку:</h1>
+
+        <input
+          type="text"
+          name='username'
+          placeholder='login'
+          onChange={ ( e ) => changeHandler( e ) }
+          required={ true }
+        />
+
+        <input
+          type="password"
+          name='password'
+          placeholder='password'
+          onChange={ ( e ) => changeHandler( e ) }
+          required={ true }
+        />
+
+        <button
+          onClick={ ( e ) => onLogin( e ) }
+          type='button'
+          className='form_btn'
+        >
+          Ввійти
+        </button>
+      </form>
+    </LoginFormWrapper>
   );
 };
 
