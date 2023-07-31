@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import app from '../../../firebase';
@@ -7,10 +8,12 @@ import TextComponent from './blocks/textBlock.js';
 import ImageComponent from './blocks/imageBlock';
 import CodeComponent from './blocks/codeBlock';
 import TextAreaComponent from './blocks/textareaBlock';
-
-import { ArticleWrapper } from './styled';
 import LinkComponent from './blocks/linkBlock';
 
+import { useApi } from '../../../context/apiContext';
+
+import { ArticleWrapper } from './styled';
+import { setAllPosts } from '../../../redux-store/actions/actions';
 
 const ArticleCreator = () => {
   const [ sections, setSections ] = useState( [] );
@@ -36,6 +39,14 @@ const ArticleCreator = () => {
     video: '',
     github: '',
   } );
+
+  const currentUser = useSelector( ( state ) => state.user );
+  const posts = useSelector( ( state ) => state.posts );
+  console.log( '2', posts );
+  const { createPost } = useApi();
+
+  const dispatch = useDispatch();
+
 
   const changeHandler = ( event ) => {
     setForm( { ...form, [ event.target.name ]: event.target.value } );
@@ -72,7 +83,7 @@ const ArticleCreator = () => {
     setSections( updatedList );
   };
 
-  const handleSubmit = ( e ) => {
+  const handleSubmit = async ( e ) => {
     e.preventDefault();
     const newData = {
       ...form,
@@ -88,23 +99,14 @@ const ArticleCreator = () => {
       video: form.video,
       content: sections,
     };
+    const userId = currentUser?.details?._id;
 
-    // Convert newData to JSON and save it as a file
-    const jsonData = JSON.stringify( newData, null, 2 );
-    console.log( 'jsonData', jsonData );
-    // // Create a Blob object with the JSON data
-    // const blob = new Blob( [ jsonData ], { type: 'application/json' } );
-    //
-    // // Create a URL for the Blob object
-    // const url = URL.createObjectURL( blob );
-    //
-    // // Create a link element
-    // const link = document.createElement( 'a' );
-    // link.href = url;
-    // link.download = 'data.json'; // Specify the filename
-    //
-    // // Simulate a click on the link to trigger the download
-    // link.click();
+    await createPost( userId, newData )
+        .then( ( res ) => {
+          const updatedPostsList = [ ...posts, res ];
+          dispatch( setAllPosts( updatedPostsList ) );
+        } )
+        .catch( ( err ) => console.error( err ) );
   };
 
   const handleImageUpload = ( event ) => {

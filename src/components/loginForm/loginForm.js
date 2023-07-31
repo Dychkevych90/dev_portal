@@ -21,12 +21,9 @@ const LoginForm = () => {
   };
   const onLogin = async ( e ) => {
     e.preventDefault();
-    console.log( 'form', form );
+
     await loginUser( form )
-        .then( ( res ) => {
-          console.log( 'res', res );
-          dispatch( setUser( res ) );
-        } )
+        .then( ( res ) => dispatch( setUser( res ) ) )
         .catch( ( err ) => console.error( err ) );
   };
 

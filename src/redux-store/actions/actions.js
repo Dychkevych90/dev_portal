@@ -11,7 +11,7 @@ const setAllPosts = ( posts ) => {
   return ( dispatch ) => {
     dispatch( {
       type: 'POSTS',
-      user: posts,
+      posts: posts,
     } );
   };
 };

@@ -37,6 +37,7 @@ const LoginFormWrapper = styled.div`
       border: none;
       outline: none;
       padding-left: 10px;
+      color: #000;
     }
     
     .form_btn {
