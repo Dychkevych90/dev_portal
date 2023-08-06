@@ -27,7 +27,7 @@ const ArticleCreator = () => {
   const [ setFile ] = useState( null );
   const [ pills, setPills ] = useState( [] );
   const [ form, setForm ] = useState( {
-    id: 1,
+    title: '',
     desc: '',
     banner: null,
     cover: 'No',
@@ -40,13 +40,11 @@ const ArticleCreator = () => {
     github: '',
   } );
 
-  const currentUser = useSelector( ( state ) => state.user );
   const posts = useSelector( ( state ) => state.posts );
-  console.log( '2', posts );
+
   const { createPost } = useApi();
 
   const dispatch = useDispatch();
-
 
   const changeHandler = ( event ) => {
     setForm( { ...form, [ event.target.name ]: event.target.value } );
@@ -87,7 +85,6 @@ const ArticleCreator = () => {
     e.preventDefault();
     const newData = {
       ...form,
-      id: form.id + 1,
       title: form.title,
       desc: form.desc,
       cover: form.cover,
@@ -99,14 +96,18 @@ const ArticleCreator = () => {
       video: form.video,
       content: sections,
     };
-    const userId = currentUser?.details?._id;
 
-    await createPost( userId, newData )
+    await createPost( newData )
         .then( ( res ) => {
           const updatedPostsList = [ ...posts, res ];
+          console.log( 'updatedPostsList', updatedPostsList );
           dispatch( setAllPosts( updatedPostsList ) );
         } )
         .catch( ( err ) => console.error( err ) );
+  };
+
+  const test = () => {
+    dispatch( setAllPosts( [] ) );
   };
 
   const handleImageUpload = ( event ) => {
@@ -246,6 +247,7 @@ const ArticleCreator = () => {
       <form>
         <h2 className='title'>Add new article</h2>
 
+        {/* eslint-disable-next-line max-len */}
         <input placeholder="main title" name="title" onChange={ changeHandler } required/>
 
         <input placeholder="description" name="desc" onChange={ changeHandler } required/>
@@ -380,6 +382,12 @@ const ArticleCreator = () => {
           onClick={ ( e ) => handleSubmit( e ) }
         >
             Save
+        </button>
+        <button
+          type='button'
+          onClick={ test }
+        >
+          clear
         </button>
       </form>
     </ArticleWrapper>

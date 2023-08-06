@@ -52,14 +52,18 @@ const TabBody = styled.div`
 
 const AdminContent = styled.div`
   padding: 0 50px;
+  width: 100%;
 `;
 
 const PostList = styled.div`
+  width: 100%;
   .post--item {
     padding: 20px;
     border: 1px solid goldenrod;
     margin-bottom: 20px;
     position: relative;
+    border-radius: 10px;
+    width: 100%;
   }
   
   .btns_section {
@@ -69,6 +73,13 @@ const PostList = styled.div`
   }
 `;
 
+const EditPost = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 20px;
+`;
+
 export {
   AdminContent,
   AdminPageWrapper,
@@ -76,4 +87,5 @@ export {
   TabHead,
   TabHeadNav,
   PostList,
+  EditPost,
 };

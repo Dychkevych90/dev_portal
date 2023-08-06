@@ -13,18 +13,18 @@ export const getPosts = async () => {
   }
 };
 
-export const createPost = async ( userId, postData ) => {
+export const createPost = async ( postData ) => {
   try {
-    const response = await axios.post( `${BASE_URL}/post/${userId}`, postData );
+    const response = await axios.post( `${BASE_URL}/post/created`, postData );
     return response.data;
   } catch ( error ) {
     throw new Error( handleApiError( error ) );
   }
 };
 
-export const updatePost = async ( userId, postId, postData ) => {
+export const updatePost = async ( postId, postData ) => {
   try {
-    const response = await axios.put( `${BASE_URL}/posts/${postId}/${userId}`, postData );
+    const response = await axios.put( `${BASE_URL}/post/${postId}/updatedPost`, postData );
     return response.data;
   } catch ( error ) {
     throw new Error( handleApiError( error ) );
@@ -32,8 +32,9 @@ export const updatePost = async ( userId, postId, postData ) => {
 };
 
 export const deletePost = async ( postId ) => {
+  console.log( 'postOD', typeof postId );
   try {
-    const response = await axios.delete( `${BASE_URL}/posts/${postId}` );
+    const response = await axios.delete( `${BASE_URL}/post/${postId}` );
     return response.data;
   } catch ( error ) {
     throw new Error( handleApiError( error ) );
